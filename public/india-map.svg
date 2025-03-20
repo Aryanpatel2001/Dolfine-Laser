@@ -1,0 +1,72 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M400 50C250 50 150 200 150 300C150 400 250 550 400 550C550 550 650 400 650 300C650 200 550 50 400 50Z" fill="#F1F5F9" stroke="#0EA5E9" stroke-width="2"/>
+  
+  <!-- Jammu -->
+  <circle cx="300" cy="120" r="8" fill="#0EA5E9"/>
+  <text x="310" y="125" font-family="Arial" font-size="12" fill="#0F172A">Jammu</text>
+  
+  <!-- Delhi -->
+  <circle cx="320" cy="220" r="8" fill="#0EA5E9"/>
+  <text x="330" y="225" font-family="Arial" font-size="12" fill="#0F172A">Delhi</text>
+  
+  <!-- Lucknow -->
+  <circle cx="380" cy="250" r="8" fill="#0EA5E9"/>
+  <text x="390" y="255" font-family="Arial" font-size="12" fill="#0F172A">Lucknow</text>
+  
+  <!-- Patna -->
+  <circle cx="450" cy="270" r="8" fill="#0EA5E9"/>
+  <text x="460" y="275" font-family="Arial" font-size="12" fill="#0F172A">Patna</text>
+  
+  <!-- Kolkata -->
+  <circle cx="500" cy="300" r="8" fill="#0EA5E9"/>
+  <text x="510" y="305" font-family="Arial" font-size="12" fill="#0F172A">Kolkata</text>
+  
+  <!-- Guwahati -->
+  <circle cx="550" cy="250" r="8" fill="#0EA5E9"/>
+  <text x="560" y="255" font-family="Arial" font-size="12" fill="#0F172A">Guwahati</text>
+  
+  <!-- Indore -->
+  <circle cx="300" cy="300" r="8" fill="#0EA5E9"/>
+  <text x="310" y="305" font-family="Arial" font-size="12" fill="#0F172A">Indore</text>
+  
+  <!-- Raipur -->
+  <circle cx="380" cy="330" r="8" fill="#0EA5E9"/>
+  <text x="390" y="335" font-family="Arial" font-size="12" fill="#0F172A">Raipur</text>
+  
+  <!-- Ahmedabad (HO) -->
+  <circle cx="250" cy="280" r="10" fill="#0369A1"/>
+  <text x="260" y="285" font-family="Arial" font-size="14" font-weight="bold" fill="#0F172A">Ahmedabad (HO)</text>
+  
+  <!-- Rajkot -->
+  <circle cx="220" cy="300" r="8" fill="#0EA5E9"/>
+  <text x="230" y="305" font-family="Arial" font-size="12" fill="#0F172A">Rajkot</text>
+  
+  <!-- Jodhpur -->
+  <circle cx="250" cy="250" r="8" fill="#0EA5E9"/>
+  <text x="260" y="255" font-family="Arial" font-size="12" fill="#0F172A">Jodhpur</text>
+  
+  <!-- Surat -->
+  <circle cx="250" cy="320" r="8" fill="#0EA5E9"/>
+  <text x="260" y="325" font-family="Arial" font-size="12" fill="#0F172A">Surat</text>
+  
+  <!-- Mumbai -->
+  <circle cx="250" cy="350" r="8" fill="#0EA5E9"/>
+  <text x="260" y="355" font-family="Arial" font-size="12" fill="#0F172A">Mumbai</text>
+  
+  <!-- Hyderabad -->
+  <circle cx="320" cy="380" r="8" fill="#0EA5E9"/>
+  <text x="330" y="385" font-family="Arial" font-size="12" fill="#0F172A">Hyderabad</text>
+  
+  <!-- Bangalore -->
+  <circle cx="300" cy="430" r="8" fill="#0EA5E9"/>
+  <text x="310" y="435" font-family="Arial" font-size="12" fill="#0F172A">Bangalore</text>
+  
+  <!-- Chennai -->
+  <circle cx="350" cy="450" r="8" fill="#0EA5E9"/>
+  <text x="360" y="455" font-family="Arial" font-size="12" fill="#0F172A">Chennai</text>
+  
+  <!-- Coimbatore -->
+  <circle cx="300" cy="470" r="8" fill="#0EA5E9"/>
+  <text x="310" y="475" font-family="Arial" font-size="12" fill="#0F172A">Coimbatore</text>
+</svg>
+
