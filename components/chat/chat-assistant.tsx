@@ -17,7 +17,9 @@ type ResizeHandle = "top-left" | "top-right" | "bottom-left" | "bottom-right";
 
 export function ChatAssistant() {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<
+    Array<{ role: "user" | "assistant"; content: string }>
+  >([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -98,35 +100,118 @@ export function ChatAssistant() {
     initialSize.current = size;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
 
-    const newMessage: Message = { role: "user", content: input };
-    setMessages([...messages, newMessage]);
+    const userMessage = input.trim();
     setInput("");
+    setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
     setIsLoading(true);
 
-    setTimeout(() => {
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: userMessage }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to get response");
+      }
+
+      const data = await response.json();
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: data.response },
+      ]);
+    } catch (error) {
+      console.error("Chat error:", error);
       setMessages((prev) => [
         ...prev,
         {
           role: "assistant",
           content:
-            "This is a simulated response. Replace with actual API call.",
+            "I apologize, but Im experiencing technical difficulties. Please email support@dolphinlaser.com or try again later.",
         },
       ]);
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
   };
 
   const formatMessage = (content: string) => {
-    return content.split("\n").map((line, i) => (
-      <React.Fragment key={i}>
-        {line}
-        {i !== content.split("\n").length - 1 && <br />}
-      </React.Fragment>
-    ));
+    const paragraphs = content.split("\n").filter((p) => p.trim());
+
+    return (
+      <div className="space-y-3">
+        {paragraphs.map((paragraph, idx) => {
+          // 1️⃣ Convert URLs into clickable links
+          const linkRegex = /(https?:\/\/[^\s]+)/g;
+          paragraph = paragraph.replace(
+            linkRegex,
+            '<a href="$1" target="_blank" class="text-blue-500 underline">$1</a>'
+          );
+
+          // 2️⃣ Format bullet lists ( - item or * item )
+          if (/^[-*]\s/.test(paragraph.trim())) {
+            return (
+              <div key={idx} className="flex items-start gap-2">
+                <span className="text-[#1a5f7a] mt-1">•</span>
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: paragraph.trim().replace(/^[-*]\s*/, ""),
+                  }}
+                />
+              </div>
+            );
+          }
+
+          // 3️⃣ Format numbered lists ( 1. item )
+          if (/^\d+\.\s/.test(paragraph.trim())) {
+            return (
+              <div key={idx} className="flex items-start gap-2">
+                <span className="font-bold">
+                  {paragraph.trim().split(" ")[0]}
+                </span>
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: paragraph.trim().replace(/^\d+\.\s*/, ""),
+                  }}
+                />
+              </div>
+            );
+          }
+
+          // 4️⃣ Format code blocks ( ```code``` )
+          if (paragraph.startsWith("```") && paragraph.endsWith("```")) {
+            return (
+              <pre
+                key={idx}
+                className="bg-gray-900 text-white p-3 rounded-md overflow-x-auto"
+              >
+                <code>{paragraph.replace(/```/g, "")}</code>
+              </pre>
+            );
+          }
+
+          // 5️⃣ Apply basic HTML formatting for normal text
+          return (
+            <p
+              key={idx}
+              className="leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: paragraph }}
+            />
+          );
+        })}
+      </div>
+    );
   };
 
   useEffect(() => {
