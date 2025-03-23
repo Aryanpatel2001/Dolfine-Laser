@@ -42,7 +42,7 @@ type FormValues = z.infer<typeof formSchema>;
 interface QuoteFormProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  productName: string;
+  productName?: string;
 }
 
 export function QuoteForm({ open, onOpenChange, productName }: QuoteFormProps) {

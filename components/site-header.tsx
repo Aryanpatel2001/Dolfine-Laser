@@ -46,7 +46,6 @@ export function SiteHeader() {
     { name: "Quality", href: "/quality" },
     { name: "Industries We Serve", href: "/industries" },
     { name: "Blog", href: "/blog" },
-    { name: "Gallery", href: "/gallery" },
     { name: "Contact", href: "/contact" },
   ];
 
