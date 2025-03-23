@@ -29,6 +29,7 @@ export default function RootLayout({
         >
           <SiteHeader />
           {children}
+          <Toaster position="top-right" />
           <SiteFooter />
         </ThemeProvider>
       </body>
@@ -37,3 +38,4 @@ export default function RootLayout({
 }
 
 import "./globals.css";
+import { Toaster } from "sonner";
