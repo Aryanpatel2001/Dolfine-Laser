@@ -492,7 +492,7 @@ const WhyChooseUs = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-center max-w-4xl mx-auto text-xl text-gray-700 leading-relaxed mb-20 backdrop-blur-sm bg-white/30 p-6 rounded-2xl shadow-sm"
+          className="text-center max-w-4xl mx-auto text-xl text-gray-700 leading-relaxed mb-20  bg-white/30 p-6 rounded-2xl shadow-sm"
         >
           With over two decades of experience in laser technology, we've
           established ourselves as industry leaders through our commitment to
@@ -517,7 +517,7 @@ const WhyChooseUs = () => {
                 boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.1)",
                 transition: { duration: 0.3 },
               }}
-              className="bg-white/80 backdrop-blur-sm rounded-2xl overflow-hidden relative group border border-blue-50"
+              className="bg-white/80  rounded-2xl overflow-hidden relative group border border-blue-50"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></div>
               <div className="relative z-10 p-8">

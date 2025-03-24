@@ -249,7 +249,7 @@ export default function page() {
               className="absolute inset-0 bg-gradient-to-r from-blue-100/30 via-blue-200/30 to-blue-100/30 rounded-2xl blur-xl"
             ></motion.div>
 
-            <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl p-10 shadow-lg border border-blue-50">
+            <div className="relative bg-white/80  rounded-2xl p-10 shadow-lg border border-blue-50">
               <div className="grid grid-cols-1 grid-cols-2 md:grid-cols-5 gap-6 ">
                 {certificates.map((cert, index) => (
                   <motion.div
@@ -296,7 +296,7 @@ export default function page() {
               className="absolute inset-0 bg-gradient-to-r from-blue-100/30 via-blue-200/30 to-blue-100/30 rounded-2xl blur-xl"
             ></motion.div>
 
-            <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl p-10 shadow-lg border border-blue-50">
+            <div className="relative bg-white/80  rounded-2xl p-10 shadow-lg border border-blue-50">
               <div className="grid grid-cols-1 md:grid-cols-3  place-items-center">
                 {certificates.slice(0, 3).map((cert, index) => (
                   <motion.div

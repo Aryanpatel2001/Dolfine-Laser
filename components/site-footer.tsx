@@ -51,9 +51,9 @@ export function SiteFooter() {
           {/* Company Info */}
           <div className="space-y-6">
             <div className="flex items-center gap-3">
-              <div className="rounded-full bg-white/10 p-2 backdrop-blur-sm">
+              <div className="rounded-full bg-white/10 p-2 ">
                 <Image
-                  src="/dolphin-logo.svg"
+                  src="/logo.webp"
                   alt="Dolphin Laser Machine"
                   width={50}
                   height={50}
@@ -71,11 +71,22 @@ export function SiteFooter() {
             </p>
             <div className="flex gap-4">
               {[
-                { icon: Facebook, href: "#" },
-                { icon: Twitter, href: "#" },
-                { icon: Instagram, href: "#" },
-                { icon: Linkedin, href: "#" },
-                { icon: Youtube, href: "#" },
+                {
+                  icon: Facebook,
+                  href: "https://www.facebook.com/people/Dolphin-Laser/pfbid02AVwBtch3qQkwqbYnRtgGyyHUSVzBaDT2LBCdYwR7QKY3kZi9buudt47oBQxZNewxl/",
+                },
+                {
+                  icon: Instagram,
+                  href: "https://www.instagram.com/dolphinlasermachine/",
+                },
+                {
+                  icon: Linkedin,
+                  href: "https://in.linkedin.com/company/dolphin-laser-technology",
+                },
+                {
+                  icon: Youtube,
+                  href: "https://www.youtube.com/channel/UCvWJLFU0YQhmFfo_F2QRB9w",
+                },
               ].map((social, index) => (
                 <Link
                   key={index}

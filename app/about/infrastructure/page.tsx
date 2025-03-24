@@ -153,14 +153,14 @@ const ImageGallery = ({
 
       <button
         onClick={handlePrevious}
-        className="absolute left-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition-all hover:bg-white/40"
+        className="absolute left-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-white  transition-all hover:bg-white/40"
         aria-label="Previous image"
       >
         <ChevronLeft size={24} />
       </button>
       <button
         onClick={handleNext}
-        className="absolute right-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition-all hover:bg-white/40"
+        className="absolute right-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-white  transition-all hover:bg-white/40"
         aria-label="Next image"
       >
         <ChevronRight size={24} />

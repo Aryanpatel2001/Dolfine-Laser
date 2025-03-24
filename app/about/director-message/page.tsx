@@ -123,7 +123,7 @@ const Page = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 0.8 }}
-                className="relative rounded-xl bg-white/80 p-6 text-lg italic text-gray-700 shadow-lg backdrop-blur-sm dark:bg-gray-800/80 dark:text-gray-300"
+                className="relative rounded-xl bg-white/80 p-6 text-lg italic text-gray-700 shadow-lg  dark:bg-gray-800/80 dark:text-gray-300"
               >
                 "Due To Expert in Laser Industries, I have started revolutionary
                 laser machine manufacturing company. Our Clients are able to

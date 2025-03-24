@@ -1,35 +1,45 @@
 "use client";
-
-import { useState, useEffect } from "react";
-import Link from "next/link";
+import React, { useState, useEffect } from "react";
+import { Menu, Phone, ChevronRight, ChevronDown, Globe } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { Menu, Phone, ChevronRight, ChevronDown } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
-
-import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { cn } from "@/lib/utils";
+import { QuoteForm } from "./products/quote-form";
 
 export function SiteHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
-  const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
-  const pathname = usePathname();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [dropdownTimeout, setDropdownTimeout] = useState<NodeJS.Timeout | null>(
+    null
+  );
+  const [quoteDialogOpen, setQuoteDialogOpen] = useState(false);
 
-  // Properly handle scroll event with useEffect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Check initial scroll position
+    handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const handleMouseEnter = (itemName: string) => {
+    if (dropdownTimeout) {
+      clearTimeout(dropdownTimeout);
+    }
+    setHoveredItem(itemName);
+  };
+
+  const handleMouseLeave = () => {
+    const timeout = setTimeout(() => {
+      setHoveredItem(null);
+    }, 200);
+    setDropdownTimeout(timeout);
+  };
 
   const navItems = [
     { name: "Home", href: "/" },
@@ -46,23 +56,63 @@ export function SiteHeader() {
     { name: "Quality", href: "/quality" },
     { name: "Industries We Serve", href: "/industries" },
     { name: "Blog", href: "/blog" },
+    { name: "Gallery", href: "/gallery" },
     { name: "Contact", href: "/contact" },
   ];
 
+  const headerVariants = {
+    initial: {
+      backgroundColor: "rgb(235, 234, 232)", // Transparent
+      height: "5rem",
+    },
+  };
+
+  const logoVariants = {
+    initial: { scale: 1 },
+    hover: { scale: 1.05, transition: { type: "spring", stiffness: 400 } },
+  };
+
+  const navItemVariants = {
+    initial: { y: 0, opacity: 1 },
+    hover: { y: -2, opacity: 1 },
+  };
+
+  const dropdownVariants = {
+    hidden: { opacity: 0, y: -10, transition: { duration: 0.2 } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.3,
+        type: "spring",
+        stiffness: 400,
+        damping: 25,
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: -10,
+      transition: { duration: 0.2 },
+    },
+  };
+
   return (
-    <header
-      className={cn(
-        "fixed top-0 z-50 w-full transition-all duration-500",
-        isScrolled
-          ? "bg-gray-100 backdrop-blur-md shadow-md py-2"
-          : "bg-gray-100 py-3"
-      )}
-    >
-      <div className="container mx-auto flex items-center justify-between px-4">
-        <Link href="/" className="flex items-center gap-12 group">
-          <div className="relative overflow-hidden rounded-full">
+    <div className=" bg-gradient-to-b from-blue-50 via-white to-blue-50">
+      <motion.header
+        initial="initial"
+        animate={isScrolled ? "scrolled" : "initial"}
+        variants={headerVariants}
+        transition={{ duration: 0.4 }}
+        className="fixed top-0 z-50 w-full "
+      >
+        <div className="container mx-auto flex items-center justify-between px-4 h-full">
+          {/* Logo Section */}
+          <motion.div
+            className="flex items-center gap-4 cursor-pointer"
+            variants={logoVariants}
+            whileHover="hover"
+          >
             <motion.div
-              initial={false}
               animate={{
                 scale: isScrolled ? 1 : 1.05,
                 y: isScrolled ? 0 : 2,
@@ -78,181 +128,156 @@ export function SiteHeader() {
                 className="h-[80px] w-[80px] object-contain"
               />
             </motion.div>
-          </div>
-
-          <div className="flex flex-col">
-            <motion.span
-              initial={false}
-              animate={{
-                color: "rgb(0, 0, 0)", // Set text color to black
-              }}
-              transition={{ duration: 0.3 }}
-              className="text-xl font-bold leading-tight"
-            >
-              Dolphin Laser
-            </motion.span>
-            <motion.span
-              initial={false}
-              animate={{
-                color: "rgb(0, 0, 0)", // Set text color to black
-              }}
-              transition={{ duration: 0.3 }}
-              className="text-xs font-medium"
-            >
-              Precision Engineering Solutions
-            </motion.span>
-          </div>
-        </Link>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-8">
-          <ul className="flex items-center gap-1">
-            {navItems.map((item) => {
-              const isActive = pathname === item.href;
-              const isDropdown = item.dropdown;
-              return (
-                <li
-                  key={item.href}
-                  className="relative"
-                  onMouseEnter={() => isDropdown && setAboutDropdownOpen(true)}
-                  onMouseLeave={(e) => {
-                    const target = e.relatedTarget as Node | null;
-                    if (!e.currentTarget.contains(target)) {
-                      setAboutDropdownOpen(false);
-                    }
-                  }}
-                >
-                  <Link
-                    href={item.href}
-                    className={cn(
-                      "px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1",
-                      isActive
-                        ? "text-primary"
-                        : "text-foreground hover:text-primary"
-                    )}
-                  >
-                    {item.name}
-                    {isDropdown && <ChevronDown className="h-4 w-4" />}
-                  </Link>
-
-                  {isDropdown && aboutDropdownOpen && (
-                    <AnimatePresence>
-                      <motion.ul
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        transition={{ duration: 0.2 }}
-                        className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md overflow-hidden"
-                        onMouseEnter={() => setAboutDropdownOpen(true)}
-                        onMouseLeave={() => setAboutDropdownOpen(false)}
-                      >
-                        {item.dropdown.map((subItem) => (
-                          <li key={subItem.href}>
-                            <Link
-                              href={subItem.href}
-                              className="block px-6 py-3 text-sm hover:bg-gray-200"
-                            >
-                              {subItem.name}
-                            </Link>
-                          </li>
-                        ))}
-                      </motion.ul>
-                    </AnimatePresence>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
-
-        {/* Mobile Navigation */}
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button
-              variant={isScrolled ? "outline" : "secondary"}
-              size="icon"
-              className="lg:hidden"
-            >
-              <Menu className="h-5 w-5" />
-              <span className="sr-only">Toggle menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="right" className="w-[300px] sm:w-[400px] p-0">
-            <div className="flex flex-col h-full">
-              <div className="border-b p-6 flex items-center gap-3">
-                <div className="relative h-10 w-10 overflow-hidden rounded-full">
-                  <Image
-                    src="/dolphin-logo.svg"
-                    alt="Dolphin Laser Machine"
-                    width={40}
-                    height={40}
-                    className="h-auto w-auto object-contain"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-lg font-bold leading-tight text-primary">
-                    Dolphin Laser
-                  </span>
-                  <span className="text-xs font-medium text-muted-foreground">
-                    Precision Engineering Solutions
-                  </span>
-                </div>
-              </div>
-
-              <nav className="flex-1 overflow-auto py-6 px-6">
-                <div className="mb-4 text-xs font-semibold uppercase text-muted-foreground tracking-wider">
-                  Navigation
-                </div>
-                <ul className="space-y-1">
-                  {navItems.map((item, index) => {
-                    const isActive = pathname === item.href;
-
-                    return (
-                      <motion.li
-                        key={item.href}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{
-                          duration: 0.3,
-                          delay: index * 0.05,
-                          ease: [0.22, 1, 0.36, 1],
-                        }}
-                      >
-                        <Link
-                          href={item.href}
-                          className={cn(
-                            "flex items-center justify-between py-3 px-4 rounded-md text-base font-medium transition-colors",
-                            isActive
-                              ? "bg-primary/10 text-primary"
-                              : "hover:bg-muted"
-                          )}
-                        >
-                          {item.name}
-                          <ChevronRight
-                            className={cn(
-                              "h-4 w-4 transition-transform",
-                              isActive
-                                ? "text-primary"
-                                : "text-muted-foreground"
-                            )}
-                          />
-                        </Link>
-                      </motion.li>
-                    );
-                  })}
-                </ul>
-              </nav>
-
-              <div className="border-t p-6">
-                <Button className="w-full gap-2">
-                  <Phone className="h-4 w-4" />
-                  <span>Contact Us</span>
-                </Button>
-              </div>
+            <div className="flex flex-col">
+              <motion.span
+                className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-blue-500 to-slate-600"
+                animate={{
+                  fontSize: isScrolled ? "1.1rem" : "1.25rem",
+                }}
+              >
+                Dolphin Laser
+              </motion.span>
+              <motion.span
+                className="text-sm text-gray-600"
+                animate={{
+                  opacity: isScrolled ? 0.8 : 1,
+                }}
+              >
+                Precision Engineering
+              </motion.span>
             </div>
-          </SheetContent>
-        </Sheet>
-      </div>
-    </header>
+          </motion.div>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-6">
+            {navItems.map((item) => (
+              <motion.div
+                key={item.name}
+                className="relative"
+                onMouseEnter={() => handleMouseEnter(item.name)}
+                onMouseLeave={handleMouseLeave}
+                variants={navItemVariants}
+                whileHover="hover"
+              >
+                <motion.a
+                  href={item.href}
+                  className="flex items-center gap-1 px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200"
+                >
+                  {item.name}
+                  {item.dropdown && (
+                    <motion.div
+                      animate={{
+                        rotate: hoveredItem === item.name ? 180 : 0,
+                      }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <ChevronDown className="h-4 w-4" />
+                    </motion.div>
+                  )}
+                </motion.a>
+
+                {/* Enhanced Dropdown Menu */}
+                <AnimatePresence>
+                  {item.dropdown && hoveredItem === item.name && (
+                    <motion.div
+                      variants={dropdownVariants}
+                      initial="hidden"
+                      animate="visible"
+                      exit="exit"
+                      className="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100"
+                      onMouseEnter={() => handleMouseEnter(item.name)}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      {item.dropdown.map((subItem, index) => (
+                        <motion.a
+                          key={subItem.name}
+                          href={subItem.href}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.1 }}
+                          className="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150"
+                          whileHover={{ x: 5 }}
+                        >
+                          {subItem.name}
+                        </motion.a>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+
+            {/* Contact Button */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-indigo-400 via-indigo-300 to-pink-300 text-gray-900 rounded-full shadow-lg hover:shadow-xl transition-shadow duration-300"
+              onClick={() => setQuoteDialogOpen(true)}
+            >
+              <Phone className="h-4 w-4" />
+              <span className="text-sm font-medium">Contact Us</span>
+            </motion.button>
+          </nav>
+
+          {/* Mobile Menu Button */}
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            <Menu className="h-6 w-6 text-gray-700" />
+          </motion.button>
+        </div>
+      </motion.header>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ type: "spring", damping: 20 }}
+            className="fixed inset-y-0 right-0 w-72 bg-white shadow-2xl z-50 lg:hidden"
+          >
+            <div className="p-6">
+              <div className="flex justify-between items-center mb-8">
+                <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500">
+                  Menu
+                </span>
+                <motion.button
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="p-2"
+                >
+                  <ChevronRight className="h-6 w-6" />
+                </motion.button>
+              </div>
+              <nav className="space-y-1">
+                {navItems.map((item, index) => (
+                  <motion.div
+                    key={item.name}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="mb-2"
+                  >
+                    <a
+                      href={item.href}
+                      className="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md transition-colors duration-200"
+                    >
+                      {item.name}
+                    </a>
+                  </motion.div>
+                ))}
+              </nav>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Quote Request Form Dialog */}
+      <QuoteForm open={quoteDialogOpen} onOpenChange={setQuoteDialogOpen} />
+    </div>
   );
 }

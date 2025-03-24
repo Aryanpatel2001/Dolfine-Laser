@@ -152,7 +152,7 @@ export default function TestimonialsSection() {
                   </div>
                 </div>
                 <div className="hidden md:block relative h-64 w-64 rounded-full overflow-hidden border-4 border-primary/10">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5 backdrop-blur-sm" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5 " />
                   <div className="absolute inset-3 rounded-full overflow-hidden">
                     <Image
                       src={
