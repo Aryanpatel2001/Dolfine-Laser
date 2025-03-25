@@ -71,19 +71,21 @@ const sendUserEmail = async (data: EmailData) => {
   return await transporter.sendMail(mailOptions);
 };
 
-// Send notification email to the company
 const sendCompanyEmail = async (data: EmailData) => {
   const transporter = createTransporter();
 
   const mailOptions = {
-    from: data.email, //pateljainish1305@gmail.com
-    to: process.env.SMTP_USER || "company@yourdomain.com", //patelaryan2707@gmail.com
+    from: process.env.SMTP_USER || "no-reply@yourdomain.com", // Ensure it's an authorized sender
+    to: process.env.SMTP_USER || "company@yourdomain.com", // Company's email
+    replyTo: data.email, // Allow the company to reply to the user
     subject: `New Demo Request: ${data.product}`,
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 5px;">
         <h2 style="color: #333; text-align: center;">New Demo Request</h2>
-        <p>A new demo has been scheduled for ${data.product}.</p>
-        
+        <p>A new demo has been scheduled for <strong>${
+          data.product
+        }</strong>.</p>
+
         <h3 style="margin-top: 20px;">Customer Details:</h3>
         <div style="background-color: #f9f9f9; padding: 15px; border-radius: 5px; margin: 10px 0;">
           <p><strong>Name:</strong> ${data.name}</p>
@@ -93,7 +95,7 @@ const sendCompanyEmail = async (data: EmailData) => {
           <p><strong>Phone:</strong> ${data.phone}</p>
           <p><strong>Company:</strong> ${data.company}</p>
         </div>
-        
+
         <h3 style="margin-top: 20px;">Demo Details:</h3>
         <div style="background-color: #f9f9f9; padding: 15px; border-radius: 5px; margin: 10px 0;">
           <p><strong>Product:</strong> ${data.product}</p>
@@ -104,12 +106,17 @@ const sendCompanyEmail = async (data: EmailData) => {
             "PPP 'at' p"
           )}</p>
         </div>
-        
+
         <p style="margin-top: 20px;">Please ensure that a product specialist is assigned to this demo.</p>
-        
+
         <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e0e0e0; text-align: center; font-size: 12px; color: #777;">
           <p>This is an automated message from your demo scheduling system.</p>
         </div>
+
+        <a href="https://docs.google.com/spreadsheets/d/1gnh6PR_8NVRKXJmaawUbA5O_pPMR-knBbNAETTVecjY/edit?gid=0#gid=0" 
+           style="display: block; text-align: center; margin-top: 20px; font-size: 14px; color: #007BFF; text-decoration: none;">
+          View Demo Requests
+        </a>
       </div>
     `,
   };

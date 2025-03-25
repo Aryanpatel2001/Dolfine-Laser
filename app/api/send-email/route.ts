@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 5px;">
           <h2 style="color: #333; text-align: center;">New Demo Request</h2>
           <p>A new demo has been scheduled for ${data.product}.</p>
-          
+
           <h3 style="margin-top: 20px;">Customer Details:</h3>
           <div style="background-color: #f9f9f9; padding: 15px; border-radius: 5px; margin: 10px 0;">
             <p><strong>Name:</strong> ${data.name}</p>
@@ -90,7 +90,7 @@ export async function POST(request: NextRequest) {
             <p><strong>Phone:</strong> ${data.phone}</p>
             <p><strong>Company:</strong> ${data.company}</p>
           </div>
-          
+
           <h3 style="margin-top: 20px;">Demo Details:</h3>
           <div style="background-color: #f9f9f9; padding: 15px; border-radius: 5px; margin: 10px 0;">
             <p><strong>Product:</strong> ${data.product}</p>
@@ -101,9 +101,9 @@ export async function POST(request: NextRequest) {
               "PPP 'at' p"
             )}</p>
           </div>
-          
+
           <p style="margin-top: 20px;">Please ensure that a product specialist is assigned to this demo.</p>
-          
+
           <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e0e0e0; text-align: center; font-size: 12px; color: #777;">
             <p>This is an automated message from your demo scheduling system.</p>
           </div>
