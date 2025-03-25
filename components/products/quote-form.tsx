@@ -254,7 +254,7 @@ interface QuoteFormProps {
   productName?: string;
 }
 
-const API_URL = "http://localhost:3000/api/send-quote";
+const API_URL = "https://dolfine-laser.vercel.app/api/send-quote";
 
 export function QuoteForm({ open, onOpenChange, productName }: QuoteFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
