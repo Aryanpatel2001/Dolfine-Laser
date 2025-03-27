@@ -17,7 +17,7 @@ export default function AboutHero() {
   }, []);
 
   return (
-    <section className="relative h-[80vh] flex items-center justify-center overflow-hidden ">
+    <section className="relative min-h-[80vh] md:h-[80vh] flex items-center justify-center overflow-hidden py-12 md:py-0">
       {/* Background layers */}
       <div className="absolute inset-0 z-0">
         {/* Main background image with parallax effect */}
@@ -58,18 +58,18 @@ export default function AboutHero() {
 
         {/* Animated circles that follow mouse */}
         <motion.div
-          className="absolute w-[500px] h-[500px] rounded-full bg-blue-500/5 pointer-events-none"
+          className="absolute w-[300px] md:w-[500px] h-[300px] md:h-[500px] rounded-full bg-blue-500/5 pointer-events-none"
           animate={{
-            x: mousePosition.x - 250,
-            y: mousePosition.y - 250,
+            x: mousePosition.x - (window.innerWidth > 768 ? 250 : 150),
+            y: mousePosition.y - (window.innerWidth > 768 ? 250 : 150),
           }}
           transition={{ type: "spring", damping: 30, stiffness: 50 }}
         />
         <motion.div
-          className="absolute w-[300px] h-[300px] rounded-full bg-blue-400/5 pointer-events-none"
+          className="absolute w-[200px] md:w-[300px] h-[200px] md:h-[300px] rounded-full bg-blue-400/5 pointer-events-none"
           animate={{
-            x: mousePosition.x - 150,
-            y: mousePosition.y - 150,
+            x: mousePosition.x - (window.innerWidth > 768 ? 150 : 100),
+            y: mousePosition.y - (window.innerWidth > 768 ? 150 : 100),
           }}
           transition={{
             type: "spring",
@@ -95,7 +95,7 @@ export default function AboutHero() {
             className="inline-block mb-6"
           >
             <div className="relative">
-              <div className="w-24 h-24 rounded-full bg-blue-50 flex items-center justify-center mx-auto border border-blue-100">
+              <div className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-blue-50 flex items-center justify-center mx-auto border border-blue-100">
                 <motion.div
                   initial={{ rotate: 0 }}
                   animate={{ rotate: 360 }}
@@ -104,7 +104,7 @@ export default function AboutHero() {
                     repeat: Number.POSITIVE_INFINITY,
                     ease: "linear",
                   }}
-                  className="w-20 h-20 rounded-full border-t-2 border-r-2 border-blue-400"
+                  className="w-14 h-14 md:w-20 md:h-20 rounded-full border-t-2 border-r-2 border-blue-400"
                 />
                 <motion.div
                   initial={{ rotate: 0 }}
@@ -114,10 +114,10 @@ export default function AboutHero() {
                     repeat: Number.POSITIVE_INFINITY,
                     ease: "linear",
                   }}
-                  className="w-16 h-16 rounded-full border-b-2 border-l-2 border-blue-300 absolute"
+                  className="w-12 h-12 md:w-16 md:h-16 rounded-full border-b-2 border-l-2 border-blue-300 absolute"
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                  <div className="w-8 h-8 md:w-12 md:h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-base md:text-xl">
                     DL
                   </div>
                 </div>
@@ -129,7 +129,7 @@ export default function AboutHero() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-5xl md:text-7xl font-bold text-slate-900 mb-4"
+            className="text-4xl sm:text-5xl md:text-7xl font-bold text-slate-900 mb-2 md:mb-4"
           >
             DOLPHIN LASER
           </motion.h1>
@@ -138,7 +138,7 @@ export default function AboutHero() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-2xl md:text-3xl font-light text-slate-800 mb-8"
+            className="text-xl sm:text-2xl md:text-3xl font-light text-slate-800 mb-4 md:mb-8"
           >
             MACHINE PVT. LTD
           </motion.h2>
@@ -147,14 +147,14 @@ export default function AboutHero() {
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
-            className="h-[1px] w-32 bg-gradient-to-r from-transparent via-blue-400 to-transparent mx-auto my-8"
+            className="h-[1px] w-24 md:w-32 bg-gradient-to-r from-transparent via-blue-400 to-transparent mx-auto my-4 md:my-8"
           />
 
           <motion.h3
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 1 }}
-            className="text-xl md:text-2xl text-slate-700 max-w-3xl mx-auto font-light tracking-wide"
+            className="text-lg sm:text-xl md:text-2xl text-slate-700 max-w-3xl mx-auto font-light tracking-wide px-4"
           >
             Ahmedabad-Based Innovator Pioneering Precision in Laser Technology
           </motion.h3>
@@ -163,7 +163,7 @@ export default function AboutHero() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.2 }}
-            className="mt-12"
+            className="mt-8 md:mt-12"
           >
             <motion.button
               whileHover={{
@@ -171,7 +171,7 @@ export default function AboutHero() {
                 backgroundColor: "rgba(37, 99, 235, 1)",
               }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3  bg-blue-400 text-white rounded-full cursor-pointer font-medium tracking-wide shadow-lg transition-all duration-300 hover:shadow-blue-500/20 hover:shadow-xl"
+              className="px-6 md:px-8 py-2.5 md:py-3 bg-blue-400 text-white rounded-full cursor-pointer font-medium tracking-wide shadow-lg transition-all duration-300 hover:shadow-blue-500/20 hover:shadow-xl text-sm md:text-base"
               onClick={() => redirect("/about/infrastructure")}
             >
               Check Our InfraStructure

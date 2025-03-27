@@ -16,13 +16,13 @@ export default function AboutIntro() {
 
   return (
     <section
-      className="py-24 bg-white relative overflow-hidden mt-12"
+      className="py-12 sm:py-16 md:py-24 bg-white relative overflow-hidden mt-8 sm:mt-12"
       ref={containerRef}
     >
-      {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-blue-50 to-transparent"></div>
-      <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-50 rounded-full opacity-50"></div>
-      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-50 rounded-full opacity-50"></div>
+      {/* Decorative elements - adjusted sizes */}
+      <div className="absolute top-0 left-0 w-full h-16 sm:h-20 bg-gradient-to-b from-blue-50 to-transparent"></div>
+      <div className="absolute -top-20 sm:-top-40 -right-20 sm:-right-40 w-40 sm:w-80 h-40 sm:h-80 bg-blue-50 rounded-full opacity-50"></div>
+      <div className="absolute -bottom-20 sm:-bottom-40 -left-20 sm:-left-40 w-40 sm:w-80 h-40 sm:h-80 bg-blue-50 rounded-full opacity-50"></div>
 
       <div className="container mx-auto px-4">
         <motion.div
@@ -30,11 +30,11 @@ export default function AboutIntro() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-16"
         >
           <div className="inline-block mb-4">
-            <div className="w-20 h-20 rounded-full bg-blue-50 flex items-center justify-center mx-auto">
-              <div className="w-10 h-10 text-blue-600">
+            <div className="w-16 sm:w-20 h-16 sm:h-20 rounded-full bg-blue-50 flex items-center justify-center mx-auto">
+              <div className="w-8 sm:w-10 h-8 sm:h-10 text-blue-600">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -51,7 +51,7 @@ export default function AboutIntro() {
             </div>
           </div>
 
-          <h2 className="text-4xl font-bold text-slate-900 mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-4 px-2">
             WELCOME TO DOLPHIN LASER MACHINE PVT.LTD
           </h2>
 
@@ -64,12 +64,12 @@ export default function AboutIntro() {
           />
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-16 items-center">
           <motion.div
             style={{ scale: imageScale, opacity: imageOpacity }}
             className="relative"
           >
-            <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative h-[300px] sm:h-[400px] md:h-[500px] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl">
               <Image
                 src="https://www.dolphinlasermachine.com/images/about-us/about-us.webp"
                 alt="Dolphin Laser Machine Facility"
@@ -85,7 +85,7 @@ export default function AboutIntro() {
               whileInView={{ opacity: 1, scale: 1, x: 0, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
-              className="absolute -bottom-10 -right-10 w-64 h-64 rounded-2xl overflow-hidden shadow-2xl border-4 border-white"
+              className="absolute -bottom-6 sm:-bottom-10 -right-6 sm:-right-10 w-40 sm:w-64 h-40 sm:h-64 rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border-4 border-white"
             >
               <Image
                 src="https://www.dolphinlasermachine.com/images/company-profile/about.webp"
@@ -97,10 +97,10 @@ export default function AboutIntro() {
               <div className="absolute inset-0 bg-gradient-to-t from-blue-900/30 to-transparent"></div>
             </motion.div>
 
-            {/* Decorative elements */}
-            <div className="absolute -top-6 -left-6 w-12 h-12 rounded-full bg-blue-100"></div>
-            <div className="absolute top-1/4 -left-8 w-6 h-6 rounded-full bg-blue-200"></div>
-            <div className="absolute bottom-1/3 -left-4 w-8 h-8 rounded-full bg-blue-50"></div>
+            {/* Decorative elements - adjusted sizes */}
+            <div className="absolute -top-4 sm:-top-6 -left-4 sm:-left-6 w-8 sm:w-12 h-8 sm:h-12 rounded-full bg-blue-100"></div>
+            <div className="absolute top-1/4 -left-4 sm:-left-8 w-4 sm:w-6 h-4 sm:h-6 rounded-full bg-blue-200"></div>
+            <div className="absolute bottom-1/3 -left-3 sm:-left-4 w-6 sm:w-8 h-6 sm:h-8 rounded-full bg-blue-50"></div>
           </motion.div>
 
           <motion.div
@@ -108,9 +108,9 @@ export default function AboutIntro() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-slate-700 space-y-6"
+            className="text-slate-700 space-y-4 sm:space-y-6"
           >
-            <p className="text-xl leading-relaxed">
+            <p className="text-lg sm:text-xl leading-relaxed">
               In the heart of Ahmedabad, a trailblazing venture,{" "}
               <span className="font-semibold text-blue-700">
                 DOLPHIN LASER MACHINE PVT. LTD.
@@ -120,15 +120,15 @@ export default function AboutIntro() {
               Engraving, Welding, and Cleaning.
             </p>
 
-            <div className="pl-5 border-l-4 border-blue-100">
-              <p className="italic text-slate-600">
+            <div className="pl-3 sm:pl-5 border-l-2 sm:border-l-4 border-blue-100">
+              <p className="italic text-base sm:text-lg text-slate-600">
                 "With a dedicated in-house R&D team and rigorous quality control
                 adhering to ISO & CE standards, Dolphin Laser excels in crafting
                 advanced systems using state-of-the-art technologies."
               </p>
             </div>
 
-            <p className="leading-relaxed text-xl">
+            <p className="leading-relaxed text-lg sm:text-xl">
               Under the leadership of{" "}
               <span className="font-semibold">Viral Antala</span>, the Founder
               and CEO, Dolphin Laser empowers clients with seamless operations.
@@ -137,12 +137,12 @@ export default function AboutIntro() {
               technology for efficient workflows.
             </p>
 
-            <div className="grid grid-cols-2 gap-4 my-8">
-              <div className="bg-blue-50 rounded-lg p-4">
-                <h4 className="font-semibold text-blue-800 mb-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6 sm:my-8">
+              <div className="bg-blue-50 rounded-lg p-3 sm:p-4">
+                <h4 className="font-semibold text-blue-800 mb-2 text-sm sm:text-base">
                   Our Products
                 </h4>
-                <ul className="text-base space-y-1">
+                <ul className="text-sm sm:text-base space-y-1">
                   <li className="flex items-center">
                     <svg
                       className="w-4 h-4 mr-2 text-blue-500"
@@ -213,11 +213,11 @@ export default function AboutIntro() {
                   </li>
                 </ul>
               </div>
-              <div className="bg-blue-50 rounded-lg p-4">
-                <h4 className="font-semibold text-blue-800 mb-2">
+              <div className="bg-blue-50 rounded-lg p-3 sm:p-4">
+                <h4 className="font-semibold text-blue-800 mb-2 text-sm sm:text-base">
                   Industries Served
                 </h4>
-                <ul className="text-base space-y-1">
+                <ul className="text-sm sm:text-base space-y-1">
                   <li className="flex items-center">
                     <svg
                       className="w-4 h-4 mr-2 text-blue-500"
@@ -290,7 +290,7 @@ export default function AboutIntro() {
               </div>
             </div>
 
-            <p className="leading-relaxed text-xl">
+            <p className="leading-relaxed text-lg sm:text-xl">
               With 25 branches spread across India for local service support and
               7 branches internationally, Dolphin has established a strong
               presence. The company takes pride in serving over 3500 plus
@@ -301,11 +301,11 @@ export default function AboutIntro() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="mt-6 px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium tracking-wide shadow-lg transition-all duration-300 flex items-center"
+              className="mt-4 sm:mt-6 px-6 sm:px-8 py-2.5 sm:py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium tracking-wide shadow-lg transition-all duration-300 flex items-center text-sm sm:text-base"
             >
               Learn More About Us
               <svg
-                className="w-5 h-5 ml-2"
+                className="w-4 h-4 sm:w-5 sm:h-5 ml-2"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

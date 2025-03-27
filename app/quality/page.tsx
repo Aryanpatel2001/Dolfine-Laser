@@ -235,52 +235,6 @@ export default function page() {
             </p>
           </div>
 
-          {/* <div className="relative">
-            <motion.div
-              animate={{
-                opacity: [0.5, 0.8, 0.5],
-                scale: [1, 1.05, 1],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Number.POSITIVE_INFINITY,
-                repeatType: "reverse",
-              }}
-              className="absolute inset-0 bg-gradient-to-r from-blue-100/30 via-blue-200/30 to-blue-100/30 rounded-2xl blur-xl"
-            ></motion.div>
-
-            <div className="relative bg-white/80  rounded-2xl p-10 shadow-lg border border-blue-50">
-              <div className="grid grid-cols-1 grid-cols-2 md:grid-cols-5 gap-6 ">
-                {certificates.map((cert, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    whileHover={{
-                      y: -5,
-                      boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)",
-                    }}
-                    className="flex flex-col items-center justify-center bg-white rounded-lg p-4 shadow-sm border border-blue-50 transition-all duration-300"
-                  >
-                    <div className="relative h-24 w-24 mb-3">
-                      <Image
-                        src={cert.image || "/placeholder.svg"}
-                        alt={cert.name}
-                        fill
-                        style={{ objectFit: "contain" }}
-                      />
-                    </div>
-                    <p className="text-sm font-medium text-slate-700 text-center">
-                      {cert.name}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div> */}
-
           <div className="relative">
             {/* Animated glow effect */}
             <motion.div

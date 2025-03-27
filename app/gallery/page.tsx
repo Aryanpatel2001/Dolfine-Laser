@@ -521,8 +521,10 @@ export default function GalleryPage() {
                   <Image
                     src={image.src || "/placeholder.svg"}
                     alt={image.alt}
-                    fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                    // fill
+                    height={500}
+                    width={500}
+                    className="object-cover transition-transform h-50 w-50 duration-300 group-hover:scale-110"
                     unoptimized={image.src.startsWith("http")}
                   />
                 </div>

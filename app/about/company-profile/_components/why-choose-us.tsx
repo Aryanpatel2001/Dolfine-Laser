@@ -1,368 +1,3 @@
-// "use client";
-
-// import { motion } from "framer-motion";
-
-// const features = [
-//   {
-//     icon: (
-//       <svg
-//         xmlns="http://www.w3.org/2000/svg"
-//         viewBox="0 0 24 24"
-//         fill="none"
-//         stroke="currentColor"
-//         strokeWidth="2"
-//         strokeLinecap="round"
-//         strokeLinejoin="round"
-//         className="h-10 w-10"
-//       >
-//         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-//         <path d="M8 11l3 3 5-5"></path>
-//       </svg>
-//     ),
-//     title: "98% Maintenance-Free",
-//     description:
-//       "Our laser machines operate reliably with minimal maintenance requirements",
-//   },
-//   {
-//     icon: (
-//       <svg
-//         xmlns="http://www.w3.org/2000/svg"
-//         viewBox="0 0 24 24"
-//         fill="none"
-//         stroke="currentColor"
-//         strokeWidth="2"
-//         strokeLinecap="round"
-//         strokeLinejoin="round"
-//         className="h-10 w-10"
-//       >
-//         <circle cx="12" cy="8" r="7"></circle>
-//         <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-//         <circle cx="12" cy="8" r="3"></circle>
-//       </svg>
-//     ),
-//     title: "ISO & CE Certified",
-//     description: "All machines meet international quality and safety standards",
-//   },
-//   {
-//     icon: (
-//       <svg
-//         xmlns="http://www.w3.org/2000/svg"
-//         viewBox="0 0 24 24"
-//         fill="none"
-//         stroke="currentColor"
-//         strokeWidth="2"
-//         strokeLinecap="round"
-//         strokeLinejoin="round"
-//         className="h-10 w-10"
-//       >
-//         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-//         <circle cx="12" cy="10" r="3"></circle>
-//       </svg>
-//     ),
-//     title: "Global Service Network",
-//     description:
-//       "25 branches in India and 7 international locations for quick support",
-//   },
-//   {
-//     icon: (
-//       <svg
-//         xmlns="http://www.w3.org/2000/svg"
-//         viewBox="0 0 24 24"
-//         fill="none"
-//         stroke="currentColor"
-//         strokeWidth="2"
-//         strokeLinecap="round"
-//         strokeLinejoin="round"
-//         className="h-10 w-10"
-//       >
-//         <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-//         <path d="M2 17l10 5 10-5"></path>
-//         <path d="M2 12l10 5 10-5"></path>
-//       </svg>
-//     ),
-//     title: "Advanced Technology",
-//     description: "State-of-the-art laser systems with cutting-edge features",
-//   },
-//   {
-//     icon: (
-//       <svg
-//         xmlns="http://www.w3.org/2000/svg"
-//         viewBox="0 0 24 24"
-//         fill="none"
-//         stroke="currentColor"
-//         strokeWidth="2"
-//         strokeLinecap="round"
-//         strokeLinejoin="round"
-//         className="h-10 w-10"
-//       >
-//         <circle cx="12" cy="12" r="10"></circle>
-//         <polyline points="12 6 12 12 16 14"></polyline>
-//       </svg>
-//     ),
-//     title: "Extended Lifespan",
-//     description:
-//       "Machines designed for durability with longer operational life",
-//   },
-//   {
-//     icon: (
-//       <svg
-//         xmlns="http://www.w3.org/2000/svg"
-//         viewBox="0 0 24 24"
-//         fill="none"
-//         stroke="currentColor"
-//         strokeWidth="2"
-//         strokeLinecap="round"
-//         strokeLinejoin="round"
-//         className="h-10 w-10"
-//       >
-//         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-//         <circle cx="9" cy="7" r="4"></circle>
-//         <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-//         <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-//       </svg>
-//     ),
-//     title: "Dedicated Support Team",
-//     description:
-//       "Expert technicians available for training and troubleshooting",
-//   },
-//   {
-//     icon: (
-//       <svg
-//         xmlns="http://www.w3.org/2000/svg"
-//         viewBox="0 0 24 24"
-//         fill="none"
-//         stroke="currentColor"
-//         strokeWidth="2"
-//         strokeLinecap="round"
-//         strokeLinejoin="round"
-//         className="h-10 w-10"
-//       >
-//         <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-//         <path d="M12 8v8"></path>
-//         <path d="M18 12H6"></path>
-//       </svg>
-//     ),
-//     title: "Flexible Payment Options",
-//     description: "Customized financial solutions to fit your business needs",
-//   },
-//   {
-//     icon: (
-//       <svg
-//         xmlns="http://www.w3.org/2000/svg"
-//         viewBox="0 0 24 24"
-//         fill="none"
-//         stroke="currentColor"
-//         strokeWidth="2"
-//         strokeLinecap="round"
-//         strokeLinejoin="round"
-//         className="h-10 w-10"
-//       >
-//         <line x1="12" y1="1" x2="12" y2="23"></line>
-//         <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-//       </svg>
-//     ),
-//     title: "Competitive Pricing",
-//     description: "Best-in-class technology at industry-leading prices",
-//   },
-//   {
-//     icon: (
-//       <svg
-//         xmlns="http://www.w3.org/2000/svg"
-//         viewBox="0 0 24 24"
-//         fill="none"
-//         stroke="currentColor"
-//         strokeWidth="2"
-//         strokeLinecap="round"
-//         strokeLinejoin="round"
-//         className="h-10 w-10"
-//       >
-//         <rect x="1" y="3" width="15" height="13"></rect>
-//         <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
-//         <circle cx="5.5" cy="18.5" r="2.5"></circle>
-//         <circle cx="18.5" cy="18.5" r="2.5"></circle>
-//       </svg>
-//     ),
-//     title: "Fast Delivery",
-//     description: "Quick manufacturing and shipping to minimize downtime",
-//   },
-// ];
-
-// const containerVariants = {
-//   hidden: { opacity: 0 },
-//   visible: {
-//     opacity: 1,
-//     transition: {
-//       staggerChildren: 0.1,
-//     },
-//   },
-// };
-
-// const itemVariants = {
-//   hidden: { y: 20, opacity: 0 },
-//   visible: {
-//     y: 0,
-//     opacity: 1,
-//     transition: { duration: 0.6 },
-//   },
-// };
-
-// export default function WhyChooseUs() {
-//   return (
-//     <section className="py-24 relative overflow-hidden">
-//       {/* Background elements */}
-//       <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-blue-50"></div>
-//       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMzQjgyRjYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0aDR2MWgtNHYtMXptMC0yaDF2NGgtMXYtNHptMi0yaDF2MWgtMXYtMXptLTIgMmgtMXYxaDF2LTF6bS0yLTJoMXYxaC0xdi0xem0yLTJoMXYxaC0xdi0xem0tMiAydi0xaC0xdjFoMXptLTIgMmgtMXYxaDF2LTF6bS0yLTJoMXYxaC0xdi0xem0yLTJoMXYxaC0xdi0xem0tMiAydi0xaC0xdjFoMXptLTIgMmgtMXYxaDF2LTF6bS0yLTJoMXYxaC0xdi0xem0yLTJoMXYxaC0xdi0xem0yLTJoMXYxaC0xdi0xeiIvPjwvZz48L2c+PC9zdmc+')] opacity-30"></div>
-
-//       {/* Decorative elements */}
-//       <div className="absolute top-20 left-10 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-//       <div className="absolute top-40 right-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-//       <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
-
-//       <div className="container mx-auto px-4 relative z-10">
-//         <motion.div
-//           initial={{ opacity: 0, y: 20 }}
-//           whileInView={{ opacity: 1, y: 0 }}
-//           transition={{ duration: 0.8 }}
-//           viewport={{ once: true }}
-//           className="text-center mb-20"
-//         >
-//           <div className="inline-block mb-4">
-//             <div className="relative">
-//               <div className="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center mx-auto">
-//                 <div className="w-10 h-10 text-blue-600">
-//                   <svg
-//                     xmlns="http://www.w3.org/2000/svg"
-//                     viewBox="0 0 24 24"
-//                     fill="none"
-//                     stroke="currentColor"
-//                     strokeWidth="2"
-//                     strokeLinecap="round"
-//                     strokeLinejoin="round"
-//                   >
-//                     <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-//                   </svg>
-//                 </div>
-//               </div>
-//               <motion.div
-//                 initial={{ scale: 0.8, opacity: 0 }}
-//                 whileInView={{ scale: 1, opacity: 1 }}
-//                 transition={{ duration: 0.5, delay: 0.2 }}
-//                 viewport={{ once: true }}
-//                 className="absolute -top-2 -right-2 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white"
-//               >
-//                 <svg
-//                   xmlns="http://www.w3.org/2000/svg"
-//                   viewBox="0 0 24 24"
-//                   fill="none"
-//                   stroke="currentColor"
-//                   strokeWidth="2"
-//                   strokeLinecap="round"
-//                   strokeLinejoin="round"
-//                   className="w-4 h-4"
-//                 >
-//                   <polyline points="20 6 9 17 4 12"></polyline>
-//                 </svg>
-//               </motion.div>
-//             </div>
-//           </div>
-
-//           <h2 className="text-4xl font-bold text-slate-900 mb-4">
-//             Why Choose Us
-//           </h2>
-
-//           <motion.div
-//             initial={{ scaleX: 0 }}
-//             whileInView={{ scaleX: 1 }}
-//             transition={{ duration: 1, delay: 0.3 }}
-//             viewport={{ once: true }}
-//             className="h-1 w-24 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto mb-8"
-//           />
-
-//           <p className="max-w-3xl mx-auto text-slate-700 text-lg">
-//             Because of the high quality of our products, we have been able to
-//             gain a significant market share. We have a dedicated team of experts
-//             who help us in providing the highest quality products to our valued
-//             clients in accordance with their needs.
-//           </p>
-//         </motion.div>
-
-//         <motion.div
-//           variants={containerVariants}
-//           initial="hidden"
-//           whileInView="visible"
-//           viewport={{ once: true, margin: "-100px" }}
-//           className="grid grid-cols-1 md:grid-cols-3 gap-8"
-//         >
-//           {features.map((feature, index) => (
-//             <motion.div
-//               key={index}
-//               variants={itemVariants}
-//               whileHover={{
-//                 y: -5,
-//                 boxShadow:
-//                   "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-//               }}
-//               className="bg-white rounded-xl overflow-hidden transition-all duration-300 group cursor-pointer"
-//             >
-//               <div className="h-2 bg-gradient-to-r from-blue-400 to-blue-600"></div>
-//               <div className="p-8">
-//                 <div className="mb-6 relative">
-//                   <div className="w-16 h-16 rounded-lg bg-blue-50 flex items-center justify-center text-blue-500 group-hover:text-blue-600 group-hover:bg-blue-100 transition-all duration-300">
-//                     {feature.icon}
-//                   </div>
-//                   <motion.div
-//                     initial={{ scale: 0, opacity: 0 }}
-//                     whileInView={{ scale: 1, opacity: 1 }}
-//                     transition={{ duration: 0.3, delay: 0.2 }}
-//                     viewport={{ once: true }}
-//                     className="absolute -top-1 -right-1 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-//                   >
-//                     <svg
-//                       xmlns="http://www.w3.org/2000/svg"
-//                       viewBox="0 0 24 24"
-//                       fill="none"
-//                       stroke="currentColor"
-//                       strokeWidth="2"
-//                       strokeLinecap="round"
-//                       strokeLinejoin="round"
-//                       className="w-3 h-3"
-//                     >
-//                       <polyline points="20 6 9 17 4 12"></polyline>
-//                     </svg>
-//                   </motion.div>
-//                 </div>
-//                 <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
-//                   {feature.title}
-//                 </h3>
-//                 <p className="text-slate-600">{feature.description}</p>
-
-//                 <div className="mt-6 pt-4 border-t border-slate-100 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-//                   <span className="text-sm text-blue-600 font-medium">
-//                     Learn more
-//                   </span>
-//                   <svg
-//                     xmlns="http://www.w3.org/2000/svg"
-//                     viewBox="0 0 24 24"
-//                     fill="none"
-//                     stroke="currentColor"
-//                     strokeWidth="2"
-//                     strokeLinecap="round"
-//                     strokeLinejoin="round"
-//                     className="w-4 h-4 text-blue-600"
-//                   >
-//                     <path d="M5 12h14"></path>
-//                     <path d="M12 5l7 7-7 7"></path>
-//                   </svg>
-//                 </div>
-//               </div>
-//             </motion.div>
-//           ))}
-//         </motion.div>
-//       </div>
-//     </section>
-//   );
-// }
-
 "use client";
 
 import React from "react";
@@ -447,25 +82,22 @@ const WhyChooseUs = () => {
   };
 
   return (
-    <section className="py-24 relative overflow-hidden bg-gradient-to-b from-white to-blue-50">
-      {/* Background decorative elements */}
+    <section className="py-12 sm:py-16 md:py-24 relative overflow-hidden bg-gradient-to-b from-white to-blue-50">
+      {/* Background decorative elements - adjusted sizes */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-        <div className="absolute top-40 right-10 w-72 h-72 bg-red-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-yellow-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+        <div className="absolute top-10 sm:top-20 left-5 sm:left-10 w-32 sm:w-64 h-32 sm:h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+        <div className="absolute top-20 sm:top-40 right-5 sm:right-10 w-36 sm:w-72 h-36 sm:h-72 bg-red-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-10 sm:bottom-20 left-1/4 w-40 sm:w-80 h-40 sm:h-80 bg-yellow-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
 
-        <div className="absolute top-1/4 right-1/4 w-2 h-2 bg-blue-500 rounded-full shadow-lg shadow-blue-500/50"></div>
-        <div className="absolute top-1/3 left-1/5 w-3 h-3 bg-red-500 rounded-full shadow-lg shadow-red-500/50"></div>
-        <div className="absolute bottom-1/4 right-1/3 w-2 h-2 bg-yellow-500 rounded-full shadow-lg shadow-yellow-500/50"></div>
+        {/* Decorative dots - adjusted positions */}
+        <div className="absolute top-1/4 right-1/4 w-1 sm:w-2 h-1 sm:h-2 bg-blue-500 rounded-full shadow-lg shadow-blue-500/50"></div>
+        <div className="absolute top-1/3 left-1/5 w-1.5 sm:w-3 h-1.5 sm:h-3 bg-red-500 rounded-full shadow-lg shadow-red-500/50"></div>
+        <div className="absolute bottom-1/4 right-1/3 w-1 sm:w-2 h-1 sm:h-2 bg-yellow-500 rounded-full shadow-lg shadow-yellow-500/50"></div>
       </div>
 
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-20"
-        >
+        {/* Header section */}
+        <motion.div className="text-center mb-12 sm:mb-20">
           <div className="inline-block relative">
             <motion.span
               initial={{ width: 0 }}
@@ -473,7 +105,7 @@ const WhyChooseUs = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="absolute -top-6 left-0 h-1 bg-gradient-to-r from-transparent via-blue-300 to-transparent"
             ></motion.span>
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent mb-4">
               Why Choose Us
             </h2>
             <motion.span
@@ -483,17 +115,13 @@ const WhyChooseUs = () => {
               className="absolute -bottom-3 left-0 h-1 bg-gradient-to-r from-transparent via-red-400 to-transparent"
             ></motion.span>
           </div>
-          <p className="text-lg font-semibold text-gray-600 max-w-3xl mx-auto mt-8">
+          <p className="text-base sm:text-lg font-semibold text-gray-600 max-w-3xl mx-auto mt-6 sm:mt-8 px-2">
             Precision Engineering for Tomorrow's Manufacturing
           </p>
         </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-center max-w-4xl mx-auto text-xl text-gray-700 leading-relaxed mb-20  bg-white/30 p-6 rounded-2xl shadow-sm"
-        >
+        {/* Description paragraph */}
+        <motion.p className="text-center max-w-4xl mx-auto text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mb-12 sm:mb-20 bg-white/30 p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-sm">
           With over two decades of experience in laser technology, we've
           established ourselves as industry leaders through our commitment to
           innovation, quality, and customer satisfaction. Our cutting-edge laser
@@ -501,12 +129,13 @@ const WhyChooseUs = () => {
           unparalleled precision and reliability.
         </motion.p>
 
+        {/* Features grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 mt-8 sm:mt-12"
         >
           {features.map((feature, index) => (
             <motion.div
@@ -517,17 +146,19 @@ const WhyChooseUs = () => {
                 boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.1)",
                 transition: { duration: 0.3 },
               }}
-              className="bg-white/80  rounded-2xl overflow-hidden relative group border border-blue-50"
+              className="bg-white/80 rounded-xl sm:rounded-2xl overflow-hidden relative group border border-blue-50"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></div>
-              <div className="relative z-10 p-8">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg transform -translate-y-2 group-hover:rotate-3 transition-all duration-300">
-                  <div className="text-white">{feature.icon}</div>
+              <div className="relative z-10 p-6 sm:p-8">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg transform -translate-y-2 group-hover:rotate-3 transition-all duration-300">
+                  <div className="text-white scale-75 sm:scale-100">
+                    {feature.icon}
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold text-blue-700 mb-4 text-center group-hover:text-blue-800 transition-colors">
+                <h3 className="text-lg sm:text-xl font-semibold text-blue-700 mb-3 sm:mb-4 text-center group-hover:text-blue-800 transition-colors">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600 text-center">
+                <p className="text-sm sm:text-base text-gray-600 text-center">
                   {feature.description}
                 </p>
               </div>
@@ -535,14 +166,15 @@ const WhyChooseUs = () => {
           ))}
         </motion.div>
 
+        {/* Stats section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
-          className="mt-24 bg-white/70 backdrop-blur-md rounded-3xl shadow-xl p-12 border border-blue-100"
+          className="mt-16 sm:mt-24 bg-white/70 backdrop-blur-md rounded-2xl sm:rounded-3xl shadow-xl p-6 sm:p-12 border border-blue-100"
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
@@ -555,23 +187,20 @@ const WhyChooseUs = () => {
                 <motion.div
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300 }}
-                  className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent mb-3"
+                  className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent mb-2 sm:mb-3"
                 >
                   {stat.value}
                 </motion.div>
-                <p className="text-gray-600 font-medium">{stat.label}</p>
+                <p className="text-sm sm:text-base text-gray-600 font-medium">
+                  {stat.label}
+                </p>
               </motion.div>
             ))}
           </div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="text-center mt-20"
-        >
+        {/* CTA Button */}
+        <motion.div className="text-center mt-12 sm:mt-20">
           <motion.a
             href="#contact"
             whileHover={{
@@ -579,40 +208,42 @@ const WhyChooseUs = () => {
               boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.5)",
             }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-full shadow-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300"
+            className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-full shadow-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 text-sm sm:text-base"
           >
             Request a Consultation
-            <ChevronRight className="ml-2 w-5 h-5" />
+            <ChevronRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
           </motion.a>
         </motion.div>
       </div>
 
       {/* Add custom animation for the blob effect */}
-      <style jsx>{`
-        @keyframes blob {
-          0% {
-            transform: translate(0px, 0px) scale(1);
+      <style jsx>
+        {`
+          @keyframes blob {
+            0% {
+              transform: translate(0px, 0px) scale(1);
+            }
+            33% {
+              transform: translate(30px, -50px) scale(1.1);
+            }
+            66% {
+              transform: translate(-20px, 20px) scale(0.9);
+            }
+            100% {
+              transform: translate(0px, 0px) scale(1);
+            }
           }
-          33% {
-            transform: translate(30px, -50px) scale(1.1);
+          .animate-blob {
+            animation: blob 25s infinite alternate;
           }
-          66% {
-            transform: translate(-20px, 20px) scale(0.9);
+          .animation-delay-2000 {
+            animation-delay: 2s;
           }
-          100% {
-            transform: translate(0px, 0px) scale(1);
+          .animation-delay-4000 {
+            animation-delay: 4s;
           }
-        }
-        .animate-blob {
-          animation: blob 25s infinite alternate;
-        }
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
-      `}</style>
+        `}
+      </style>
     </section>
   );
 };
