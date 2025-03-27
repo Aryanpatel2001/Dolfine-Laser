@@ -9,6 +9,7 @@ import { ProductShowcase } from "@/components/Product";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import { FloatingContactButtons } from "@/components/floating-contact-button";
 import AwardsSection from "@/components/AwardSection";
+import Link from "next/link";
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -102,12 +103,14 @@ export default function Home() {
                 technologies.
               </p>
               <div className="flex flex-wrap gap-4 items-center">
-                <Button
-                  variant="default"
-                  className="bg-[#1a5f7a] hover:bg-[#1a5f7a]/90 text-white rounded-full px-6 py-6 h-auto text-sm sm:text-base"
-                >
-                  Learn More About Us
-                </Button>
+                <Link href={"/about/company-profile"}>
+                  <Button
+                    variant="default"
+                    className="bg-[#1a5f7a] hover:bg-[#1a5f7a]/90 text-white rounded-full px-6 py-6 h-auto text-sm sm:text-base"
+                  >
+                    Learn More About Us
+                  </Button>
+                </Link>
                 <div className="flex items-center gap-2">
                   <div className="flex -space-x-2">
                     {[1, 2, 3].map((i) => (

@@ -6,15 +6,53 @@ import { useEffect, useState } from "react";
 
 export default function AboutHero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    // Set isMounted to true when component mounts
+    setIsMounted(true);
+
+    // Initialize window size
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
+
+  // Return null or loading state while client-side code is hydrating
+  if (!isMounted) {
+    return null; // Or a loading placeholder
+  }
+
+  const getCirclePosition = (size: number) => {
+    if (!isMounted) return { x: 0, y: 0 };
+
+    const offset = size / 2;
+    return {
+      x: mousePosition.x - offset,
+      y: mousePosition.y - offset,
+    };
+  };
 
   return (
     <section className="relative min-h-[80vh] md:h-[80vh] flex items-center justify-center overflow-hidden py-12 md:py-0">
@@ -59,18 +97,12 @@ export default function AboutHero() {
         {/* Animated circles that follow mouse */}
         <motion.div
           className="absolute w-[300px] md:w-[500px] h-[300px] md:h-[500px] rounded-full bg-blue-500/5 pointer-events-none"
-          animate={{
-            x: mousePosition.x - (window.innerWidth > 768 ? 250 : 150),
-            y: mousePosition.y - (window.innerWidth > 768 ? 250 : 150),
-          }}
+          animate={getCirclePosition(windowSize.width > 768 ? 500 : 300)}
           transition={{ type: "spring", damping: 30, stiffness: 50 }}
         />
         <motion.div
           className="absolute w-[200px] md:w-[300px] h-[200px] md:h-[300px] rounded-full bg-blue-400/5 pointer-events-none"
-          animate={{
-            x: mousePosition.x - (window.innerWidth > 768 ? 150 : 100),
-            y: mousePosition.y - (window.innerWidth > 768 ? 150 : 100),
-          }}
+          animate={getCirclePosition(windowSize.width > 768 ? 300 : 200)}
           transition={{
             type: "spring",
             damping: 20,
