@@ -5,6 +5,14 @@ import type React from "react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import {
   MapPin,
   Phone,
   Mail,
@@ -23,45 +31,77 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import BranchLocations from "./branch-locations";
 import Link from "next/link";
 import { QuoteForm } from "@/components/products/quote-form";
+import { toast } from "sonner";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
+const formSchema = z.object({
+  name: z.string().min(2, { message: "Name must be at least 2 characters" }),
+  email: z.string().email({ message: "Please enter a valid email address" }),
+  phone: z.string().min(10, { message: "Please enter a valid phone number" }),
+  city: z.string().min(2, { message: "City must be at least 2 characters" }),
+  productName: z
+    .string()
+    .min(2, { message: "Product name must be at least 2 characters" }),
+  requirements: z.string().min(10, {
+    message: "Please provide more details about your requirements",
+  }),
+});
+
+type FormValues = z.infer<typeof formSchema>;
+const API_URL = "http://localhost:3000/api/send-quote";
 
 export default function page() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    city: "",
-    number: "",
-    message: "",
-  });
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    // Reset form
-    setFormData({
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
       name: "",
       email: "",
+      phone: "",
       city: "",
-      number: "",
-      message: "",
-    });
-    setIsSubmitting(false);
-  };
+      productName: "",
+      requirements: "",
+    },
+  });
+  async function onSubmit(data: FormValues) {
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...data,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send quote request");
+      }
+
+      toast.success("Quote request submitted", {
+        description:
+          "Our team will reach out to you shortly regarding your request.",
+      });
+
+      form.reset();
+    } catch (error) {
+      console.error("Failed to submit request:", error);
+      toast.error("Failed to submit request", {
+        description: "Please try again or contact us directly.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
 
   return (
-    <div className="min-h-screen mt-[80px] bg-gradient-to-b from-slate-50 to-blue-50">
+    <div className="min-h-screen mt-[60px] sm:mt-[80px] bg-gradient-to-b from-slate-50 to-blue-50">
       {/* Animated background elements */}
       <div className=" inset-0 -z-10 overflow-hidden">
         <motion.div
@@ -93,13 +133,13 @@ export default function page() {
 
       {/* Hero section */}
       <motion.section
-        className="py-16 px-4 sm:px-6 lg:px-8 text-center"
+        className="py-8 sm:py-16 px-4 sm:px-6 lg:px-8 text-center"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
         <motion.h1
-          className="text-4xl md:text-5xl font-bold text-slate-800 mb-4"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800 mb-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -107,7 +147,7 @@ export default function page() {
           Get in Touch
         </motion.h1>
         <motion.p
-          className="text-lg text-slate-600 max-w-2xl mx-auto"
+          className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
@@ -119,16 +159,16 @@ export default function page() {
 
       {/* Main contact section */}
       <motion.section
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-24"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.4 }}
       >
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-          <div className="grid md:grid-cols-2 lg:grid-cols-5">
+        <div className="bg-white rounded-lg sm:rounded-2xl shadow-xl overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-0">
             {/* Contact info */}
             <motion.div
-              className="p-8 lg:col-span-2 bg-gradient-to-br from-blue-50 to-cyan-50"
+              className="p-6 sm:p-8 lg:col-span-2 bg-gradient-to-br from-blue-50 to-cyan-50"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
@@ -189,11 +229,11 @@ export default function page() {
                 </div>
               </div>
 
-              <div className="mt-12">
-                <h3 className="text-lg font-medium text-slate-800 mb-4">
+              <div className="mt-8 sm:mt-12">
+                <h3 className="text-lg font-medium text-slate-800 mb-3 sm:mb-4">
                   Connect with us
                 </h3>
-                <div className="flex space-x-4">
+                <div className="flex flex-wrap gap-3 sm:gap-4">
                   {/* Social media icons */}
                   {[
                     {
@@ -228,13 +268,13 @@ export default function page() {
 
             {/* Contact form */}
             <motion.div
-              className="p-8 lg:col-span-3 bg-white"
+              className="p-6 sm:p-8 lg:col-span-3 bg-white"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              <div className="mb-6">
-                <h2 className="text-2xl font-bold text-slate-800">
+              <div className="mb-4 sm:mb-6">
+                <h2 className="text-xl sm:text-2xl font-bold text-slate-800">
                   Send us a message
                 </h2>
                 <p className="text-slate-600 mt-1">
@@ -242,104 +282,108 @@ export default function page() {
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div className="space-y-1">
-                    <label
-                      htmlFor="name"
-                      className="text-sm font-medium text-slate-700"
-                    >
-                      Full Name
-                    </label>
-                    <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="Your name"
-                      required
-                      className="w-full"
-                    />
-                  </div>
-                  <div className="space-y-1">
-                    <label
-                      htmlFor="email"
-                      className="text-sm font-medium text-slate-700"
-                    >
-                      Email Address
-                    </label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="your.email@example.com"
-                      required
-                      className="w-full"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div className="space-y-1">
-                    <label
-                      htmlFor="city"
-                      className="text-sm font-medium text-slate-700"
-                    >
-                      City
-                    </label>
-                    <Input
-                      id="city"
-                      name="city"
-                      value={formData.city}
-                      onChange={handleChange}
-                      placeholder="Your city"
-                      className="w-full"
-                    />
-                  </div>
-                  <div className="space-y-1">
-                    <label
-                      htmlFor="number"
-                      className="text-sm font-medium text-slate-700"
-                    >
-                      Phone Number
-                    </label>
-                    <Input
-                      id="number"
-                      name="number"
-                      type="tel"
-                      value={formData.number}
-                      onChange={handleChange}
-                      placeholder="Your phone number"
-                      required
-                      className="w-full"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-1">
-                  <label
-                    htmlFor="message"
-                    className="text-sm font-medium text-slate-700"
-                  >
-                    Your Requirement
-                  </label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Tell us about your requirements..."
-                    rows={4}
-                    className="w-full"
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className="space-y-4"
+                >
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Full Name</FormLabel>
+                        <FormControl>
+                          <Input placeholder="John Doe" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
-                </div>
 
-                <div>
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Email</FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder="you@example.com"
+                              type="email"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="phone"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Phone Number</FormLabel>
+                          <FormControl>
+                            <Input placeholder="+1 (555) 000-0000" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
+                  <FormField
+                    control={form.control}
+                    name="city"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>City</FormLabel>
+                        <FormControl>
+                          <Input placeholder="New York" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="productName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Product Name</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Enter product name" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="requirements"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Requirements</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            placeholder="Please describe your requirements, including any specific features or customizations you need."
+                            className="min-h-[100px]"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
                   <Button
                     type="submit"
-                    className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700"
+                    className="w-full"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
@@ -350,12 +394,12 @@ export default function page() {
                     ) : (
                       <>
                         <Send className="mr-2 h-4 w-4" />
-                        Submit Now
+                        Submit Request
                       </>
                     )}
                   </Button>
-                </div>
-              </form>
+                </form>
+              </Form>
             </motion.div>
           </div>
         </div>
@@ -363,18 +407,20 @@ export default function page() {
 
       {/* Branches section */}
       <motion.section
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-24"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 1 }}
       >
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-slate-800">Our Branches</h2>
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-800">
+            Our Branches
+          </h2>
           <p className="mt-2 text-slate-600">Find us at a location near you</p>
         </div>
 
         <Tabs defaultValue="india" className="w-full">
-          <TabsList className="grid w-full max-w-md mx-auto grid-cols-3 mb-8">
+          <TabsList className="grid w-full max-w-[280px] sm:max-w-md mx-auto grid-cols-3 mb-6 sm:mb-8">
             <TabsTrigger value="india">India</TabsTrigger>
             <TabsTrigger value="international">International</TabsTrigger>
             <TabsTrigger value="all">All Locations</TabsTrigger>
@@ -393,7 +439,7 @@ export default function page() {
 
       {/* Map section */}
       <motion.section
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-24"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.8 }}

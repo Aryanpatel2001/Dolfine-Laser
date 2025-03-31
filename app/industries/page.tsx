@@ -289,9 +289,12 @@ export default function IndustriesWeServe() {
   });
 
   return (
-    <section className="py-24 relative overflow-hidden" ref={containerRef}>
+    <section
+      className="py-12 md:py-24 relative overflow-hidden"
+      ref={containerRef}
+    >
       {/* Hero Banner */}
-      <div className="relative h-[40vh] mb-16 overflow-hidden">
+      <div className="relative h-[30vh] sm:h-[35vh] md:h-[40vh] mb-8 md:mb-16 overflow-hidden">
         <Image
           src="https://www.dolphinlasermachine.com/images/breadcums/industries.webp"
           alt="Industries We Serve"
@@ -315,17 +318,17 @@ export default function IndustriesWeServe() {
           ></motion.div>
         </div>
 
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div className="absolute inset-0 flex items-center justify-center px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-center text-white"
+            className="text-center text-white w-full"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-4 drop-shadow-lg">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2 md:mb-4 drop-shadow-lg">
               Industries We Serve
             </h1>
-            <p className="text-xl md:text-2xl max-w-3xl mx-auto font-light">
+            <p className="text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto font-light px-4">
               Our laser technology solutions power innovation across diverse
               industries
             </p>
@@ -349,13 +352,13 @@ export default function IndustriesWeServe() {
         ></motion.div>
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <motion.div style={{ opacity, y }} className="mb-12">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <motion.div style={{ opacity, y }} className="mb-8 md:mb-12">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3 md:mb-4">
               Powering Innovation Across Industries
             </h2>
-            <p className="max-w-3xl mx-auto text-slate-700">
+            <p className="max-w-3xl mx-auto text-slate-700 px-4">
               Our laser machines are used in over 35 different industries,
               providing precision cutting, marking, and engraving solutions for
               diverse applications.
@@ -363,22 +366,22 @@ export default function IndustriesWeServe() {
           </div>
 
           {/* Search and Filter */}
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
-            <div className="relative w-full md:w-auto">
+          <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 mb-8">
+            <div className="relative w-full sm:w-auto">
               <input
                 type="text"
                 placeholder="Search industries..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 pr-4 py-2 border border-blue-100 rounded-lg w-full md:w-64 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="pl-10 pr-4 py-2 border border-blue-100 rounded-lg w-full sm:w-64 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
             </div>
 
-            <div className="relative w-full md:w-auto">
+            <div className="relative w-full sm:w-auto">
               <button
                 onClick={() => setIsFilterOpen(!isFilterOpen)}
-                className="flex items-center gap-2 px-4 py-2 bg-blue-50 hover:bg-blue-100 rounded-lg text-blue-700 transition-colors duration-200 w-full md:w-auto justify-center"
+                className="flex items-center gap-2 px-4 py-2 bg-blue-50 hover:bg-blue-100 rounded-lg text-blue-700 transition-colors duration-200 w-full sm:w-auto justify-center"
               >
                 <Filter className="w-4 h-4" />
                 Filter by Category
@@ -389,7 +392,7 @@ export default function IndustriesWeServe() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
-                  className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-blue-100 z-20"
+                  className="absolute right-0 mt-2 w-full sm:w-64 bg-white rounded-lg shadow-lg border border-blue-100 z-20"
                 >
                   <div className="p-2">
                     {categories.map((category) => (
@@ -434,7 +437,7 @@ export default function IndustriesWeServe() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6"
           >
             {filteredIndustries.map((industry, index) => (
               <motion.div
@@ -445,7 +448,7 @@ export default function IndustriesWeServe() {
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
                 className="group relative bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
               >
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-36 sm:h-48 overflow-hidden">
                   <Image
                     src={industry.image || "/placeholder.svg"}
                     alt={industry.name}
@@ -470,11 +473,11 @@ export default function IndustriesWeServe() {
                   </div>
                 </div>
 
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold text-slate-900 group-hover:text-blue-600 transition-colors duration-200">
+                <div className="p-3 sm:p-4">
+                  <h3 className="text-base sm:text-lg font-semibold text-slate-900 group-hover:text-blue-600 transition-colors duration-200">
                     {industry.name}
                   </h3>
-                  <p className="text-sm text-slate-500 capitalize">
+                  <p className="text-xs sm:text-sm text-slate-500 capitalize">
                     {industry.category}
                   </p>
                 </div>
@@ -511,7 +514,7 @@ export default function IndustriesWeServe() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mt-20 bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-10 text-white text-center relative overflow-hidden"
+          className="mt-12 md:mt-20 bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl sm:rounded-2xl p-6 sm:p-10 text-white text-center relative overflow-hidden"
         >
           <div className="absolute inset-0">
             <motion.div
@@ -524,15 +527,15 @@ export default function IndustriesWeServe() {
                 repeat: Number.POSITIVE_INFINITY,
                 repeatType: "reverse",
               }}
-              className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNGRkZGRkYiIGZpbGwtb3BhY2l0eT0iMC4yIj48cGF0aCBkPSJNMzYgMzRoNHYxaC00di0xem0wLTJoMXY0aC0xdi00em0yLTJoMXYxaC0xdi0xem0tMiAyaC0xdjFoMXYtMXptLTItMmgxdjFoLTF2LTF6bTItMmgxdjFoLTF2LTF6bS0yIDJ2LTFoLTF2MWgxem0tMiAyaC0xdjFoMXYtMXptLTItMmgxdjFoLTF2LTF6bTItMmgxdjFoLTF2LTF6bS0yIDJ2LTFoLTF2MWgxem0tMiAyaC0xdjFoMXYtMXptLTItMmgxdjFoLTF2LTF6bTItMmgxdjFoLTF2LTF6bTItMmgxdjFoLTF2LTF6Ii8+PC9nPjwvZz48L3N2Zz4=')]"
+              className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNGRkZGRkYiIGZpbGwtb3BhY2l0eT0iMC4yIj48cGF0aCBkPSJNMzYgMzRoNHYxaC00di0xem0wLTJoMXY0aC0xdi00em0yLTJoMXYxaC0xdi0xem0tMiAyaC0xdjFoMXYtMXptLTItMmgxdjFoLTF2LTF6bTItMmgxdjFoLTF2LTF6bS0yIDJ2LTFoLTF2MWgxem0tMiAyaC0xdjFoMXYtMXptLTItMmgxdjFoLTF2LTF6bTItMmgxdjFoLTF2LTF6bTItMmgxdjFoLTF2LTF6Ii8+PC9nPjwvZz48L3N2Zz4=')]"
             ></motion.div>
           </div>
 
           <div className="relative z-10">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 md:mb-4">
               Need a Custom Laser Solution for Your Industry?
             </h3>
-            <p className="max-w-2xl mx-auto mb-8 text-white/90">
+            <p className="max-w-2xl mx-auto mb-6 md:mb-8 text-white/90 text-sm sm:text-base">
               Our experts can help you find the perfect laser machine for your
               specific industry requirements.
             </p>
@@ -540,7 +543,7 @@ export default function IndustriesWeServe() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setQuoteDialogOpen(true)}
-              className="px-8 py-3 bg-white text-blue-700 rounded-full font-medium tracking-wide shadow-lg transition-all duration-300 hover:shadow-white/20 hover:shadow-xl"
+              className="px-6 sm:px-8 py-2.5 sm:py-3 bg-white text-blue-700 rounded-full font-medium tracking-wide shadow-lg transition-all duration-300 hover:shadow-white/20 hover:shadow-xl text-sm sm:text-base"
             >
               Request a Quote
             </motion.button>

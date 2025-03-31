@@ -109,7 +109,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
         <div className="absolute inset-0 bg-circuit-pattern opacity-[0.02]"></div>
       </div>
 
-      <div className="container relative z-10 mx-auto px-4 py-12">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="mb-8">
           <Link
             href="/products"
@@ -120,7 +120,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
           </Link>
         </div>
 
-        <div className="grid gap-12 lg:grid-cols-2">
+        <div className="grid gap-8 lg:gap-12 md:grid-cols-1 lg:grid-cols-2">
           {/* Product Images */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -128,7 +128,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="relative h-[400px] overflow-hidden rounded-xl bg-white shadow-lg sm:h-[500px]">
+            <div className="relative h-[300px] xs:h-[400px] sm:h-[500px] overflow-hidden rounded-xl bg-white shadow-lg">
               <Image
                 src={
                   product.images[currentImageIndex].url || "/placeholder.svg"
@@ -155,12 +155,12 @@ export function ProductDetails({ product }: ProductDetailsProps) {
               </button>
             </div>
 
-            <div className="mt-4 flex gap-2 overflow-x-auto pb-2">
+            <div className="mt-4 flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
               {product.images.map((image, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentImageIndex(index)}
-                  className={`relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-md border-2 ${
+                  className={`relative h-16 w-16 sm:h-20 sm:w-20 flex-shrink-0 overflow-hidden rounded-md border-2 ${
                     index === currentImageIndex
                       ? "border-blue-600"
                       : "border-transparent"
@@ -206,7 +206,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
               </div>
             </div>
 
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
               <Button
                 className="flex-1 gap-2 bg-blue-600 hover:bg-blue-700"
                 onClick={() => setQuoteDialogOpen(true)}
@@ -257,7 +257,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
           className="mt-16"
         >
           <Tabs defaultValue="specifications" className="w-full">
-            <TabsList className="mb-8 grid w-full grid-cols-2 gap-4 sm:w-auto sm:flex">
+            <TabsList className="mb-8 grid w-full grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4">
               <TabsTrigger
                 value="specifications"
                 className="rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 data-[state=active]:border-blue-600 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
@@ -283,7 +283,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                 <h2 className="mb-6 text-xl font-bold text-gray-900">
                   Technical Specifications
                 </h2>
-                <div className="grid gap-4 sm:grid-cols-2">
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {product.specifications.map((spec, index) => (
                     <div
                       key={index}
@@ -316,7 +316,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                 <h2 className="mb-6 text-xl font-bold text-gray-900">
                   Key Features
                 </h2>
-                <div className="grid gap-4 sm:grid-cols-2">
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {product.features.map((feature, index) => (
                     <div key={index} className="flex items-start gap-3">
                       <div className="rounded-full bg-blue-100 p-1 text-blue-600">
@@ -334,7 +334,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                 <h2 className="mb-6 text-xl font-bold text-gray-900">
                   Application Examples
                 </h2>
-                <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                   {product.applicationImages.map((image, index) => (
                     <div
                       key={index}
@@ -364,16 +364,16 @@ export function ProductDetails({ product }: ProductDetailsProps) {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-16 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 p-8 text-center text-white shadow-xl"
+          className="mt-12 sm:mt-16 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600"
         >
-          <h2 className="text-2xl font-bold">
+          <h2 className="text-xl sm:text-2xl font-bold">
             Ready to enhance your production capabilities?
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-blue-100">
+          <p className="mx-auto mt-3 sm:mt-4 max-w-2xl text-sm sm:text-base text-blue-100">
             Contact our team today to discuss how the {product.name} can
             transform your manufacturing process.
           </p>
-          <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+          <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
             <Button
               size="lg"
               className="bg-white text-blue-600 hover:bg-blue-50"

@@ -61,6 +61,7 @@ export async function testGoogleSheetConnection(
 
     let sheet = doc.sheetsByIndex[0];
     console.log("sheet", sheet);
+    console.log("shhet2", doc.sheetsByIndex[1]);
     if (!sheet) {
       sheet = await doc.addSheet({
         title: "Demo Requests",

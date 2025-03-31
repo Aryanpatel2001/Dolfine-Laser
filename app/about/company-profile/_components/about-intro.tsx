@@ -16,7 +16,7 @@ export default function AboutIntro() {
 
   return (
     <section
-      className="py-12 sm:py-16 md:py-24 bg-white relative overflow-hidden mt-8 sm:mt-12"
+      className="py-6 sm:py-16 md:py-24 bg-white relative overflow-hidden mt-8 sm:mt-12"
       ref={containerRef}
     >
       {/* Decorative elements - adjusted sizes */}
@@ -297,28 +297,6 @@ export default function AboutIntro() {
               successful customers worldwide, including renowned names such as
               Aditya Birla, Reliance, L&T, Tata Steel, and many more.
             </p>
-
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="mt-4 sm:mt-6 px-6 sm:px-8 py-2.5 sm:py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium tracking-wide shadow-lg transition-all duration-300 flex items-center text-sm sm:text-base"
-            >
-              Learn More About Us
-              <svg
-                className="w-4 h-4 sm:w-5 sm:h-5 ml-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                ></path>
-              </svg>
-            </motion.button>
           </motion.div>
         </div>
       </div>

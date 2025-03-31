@@ -153,7 +153,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export default function AwardsSection() {
   return (
-    <section className="relative py-24 overflow-hidden bg-gradient-to-b from-background to-muted/30">
+    <section className="relative  overflow-hidden bg-gradient-to-b from-background to-muted/30">
       {/* Background pattern */}
       <div className="absolute inset-0 z-0 opacity-5">
         <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-primary/20 blur-3xl" />

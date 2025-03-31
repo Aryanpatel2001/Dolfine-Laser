@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -197,17 +198,19 @@ export default function AboutHero() {
             transition={{ duration: 0.8, delay: 1.2 }}
             className="mt-8 md:mt-12"
           >
-            <motion.button
-              whileHover={{
-                scale: 1.05,
-                backgroundColor: "rgba(37, 99, 235, 1)",
-              }}
-              whileTap={{ scale: 0.95 }}
-              className="px-6 md:px-8 py-2.5 md:py-3 bg-blue-400 text-white rounded-full cursor-pointer font-medium tracking-wide shadow-lg transition-all duration-300 hover:shadow-blue-500/20 hover:shadow-xl text-sm md:text-base"
-              onClick={() => redirect("/about/infrastructure")}
-            >
-              Check Our InfraStructure
-            </motion.button>
+            <Link href={"/about/infrastructure"}>
+              <motion.button
+                whileHover={{
+                  scale: 1.05,
+                  backgroundColor: "rgba(37, 99, 235, 1)",
+                }}
+                whileTap={{ scale: 0.95 }}
+                className="px-6 md:px-8 py-2.5 md:py-3 bg-blue-400 text-white rounded-full cursor-pointer font-medium tracking-wide shadow-lg transition-all duration-300 hover:shadow-blue-500/20 hover:shadow-xl text-sm md:text-base"
+                onClick={() => redirect("/about/infrastructure")}
+              >
+                Check Our InfraStructure
+              </motion.button>
+            </Link>
           </motion.div>
         </motion.div>
       </div>

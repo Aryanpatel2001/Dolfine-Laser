@@ -167,8 +167,8 @@ export default function BranchLocations({ filter }: BranchLocationsProps) {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="max-w-md mx-auto">
+    <div className="space-y-4 sm:space-y-6 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md mx-auto w-full">
         <Input
           type="text"
           placeholder="Search branches..."
@@ -179,7 +179,7 @@ export default function BranchLocations({ filter }: BranchLocationsProps) {
       </div>
 
       <motion.div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
         variants={container}
         initial="hidden"
         animate="show"
@@ -191,29 +191,31 @@ export default function BranchLocations({ filter }: BranchLocationsProps) {
             variants={item}
             whileHover={{ y: -5 }}
           >
-            <div className="p-6">
-              <h3 className="text-lg font-semibold text-slate-800 mb-2">
+            <div className="p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-semibold text-slate-800 mb-2">
                 {branch.name}
               </h3>
-              <div className="flex items-start space-x-3 mb-4">
-                <MapPin className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                <p className="text-slate-600 text-sm">{branch.address}</p>
+              <div className="flex items-start space-x-2 sm:space-x-3 mb-4">
+                <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                <p className="text-xs sm:text-sm text-slate-600">
+                  {branch.address}
+                </p>
               </div>
-              <div className="flex justify-between items-center pt-4 border-t border-slate-100">
+              <div className="flex justify-between items-center pt-4 border-t border-slate-100 space-x-2">
                 <Button
                   variant="outline"
                   size="sm"
-                  className="text-blue-600 border-blue-200 hover:bg-blue-50"
+                  className="text-blue-600 border-blue-200 hover:bg-blue-50 text-xs sm:text-sm"
                 >
-                  <Phone className="h-4 w-4 mr-2" />
+                  <Phone className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
                   Call Us
                 </Button>
                 <Button
                   variant="outline"
                   size="sm"
-                  className="text-blue-600 border-blue-200 hover:bg-blue-50"
+                  className="text-blue-600 border-blue-200 hover:bg-blue-50 text-xs sm:text-sm"
                 >
-                  <MapPin className="h-4 w-4 mr-2" />
+                  <MapPin className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
                   View Map
                 </Button>
               </div>
@@ -223,8 +225,8 @@ export default function BranchLocations({ filter }: BranchLocationsProps) {
       </motion.div>
 
       {filteredBranches.length === 0 && (
-        <div className="text-center py-12">
-          <p className="text-slate-600">
+        <div className="text-center py-8 sm:py-12">
+          <p className="text-sm sm:text-base text-slate-600">
             No branches found matching your search.
           </p>
         </div>

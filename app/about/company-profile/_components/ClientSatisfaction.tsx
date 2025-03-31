@@ -1,11 +1,14 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Users } from "lucide-react";
+import { ScheduleDemo } from "@/components/products/schedule-demo";
 
 export default function ClientSatisfaction() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [demoDialogOpen, setDemoDialogOpen] = useState(false);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
@@ -66,12 +69,16 @@ export default function ClientSatisfaction() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => setDemoDialogOpen(true)}
             className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 sm:py-3 px-6 sm:px-8 rounded-full transition-colors duration-300 text-sm sm:text-base"
           >
             Contact Us Today
           </motion.button>
         </motion.div>
       </div>
+
+      {/* Schedule Demo Dialog */}
+      <ScheduleDemo open={demoDialogOpen} onOpenChange={setDemoDialogOpen} />
     </section>
   );
 }

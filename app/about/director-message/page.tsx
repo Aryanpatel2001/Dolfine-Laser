@@ -40,7 +40,7 @@ const Page = () => {
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]"></div>
       </div>
 
-      <div className="container relative z-10 mx-auto px-4">
+      <div className=" mt-10 container relative z-10 mx-auto px-4">
         <motion.div className="mx-auto max-w-6xl">
           <div className="mb-8 sm:mb-12 text-center sm:mt-10 md:mt-20">
             <motion.h2
@@ -130,8 +130,8 @@ const Page = () => {
                       transition={{ duration: 0.4, delay: 1.4 + index * 0.1 }}
                       className="flex items-center gap-2 sm:gap-3"
                     >
-                      <div className="flex h-10 sm:h-12 w-10 sm:w-12 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
-                        <span className="text-base sm:text-lg font-bold">
+                      <div className="flex h-15 sm:h-13 w-15 sm:w-17 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+                        <span className="text-base sm:text-lg font-bold p-2">
                           {stat.number}
                         </span>
                       </div>

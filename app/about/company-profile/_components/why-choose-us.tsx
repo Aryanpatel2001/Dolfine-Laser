@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
   CheckCircle,
@@ -11,6 +11,7 @@ import {
   Users,
   ChevronRight,
 } from "lucide-react";
+import { QuoteForm } from "@/components/products/quote-form";
 
 const WhyChooseUs = () => {
   const features = [
@@ -80,9 +81,10 @@ const WhyChooseUs = () => {
       },
     },
   };
+  const [quoteDialogOpen, setQuoteDialogOpen] = useState(false);
 
   return (
-    <section className="py-12 sm:py-16 md:py-24 relative overflow-hidden bg-gradient-to-b from-white to-blue-50">
+    <section className=" sm:py-16 md:py-24 relative overflow-hidden bg-gradient-to-b from-white to-blue-50">
       {/* Background decorative elements - adjusted sizes */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-10 sm:top-20 left-5 sm:left-10 w-32 sm:w-64 h-32 sm:h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
@@ -209,12 +211,14 @@ const WhyChooseUs = () => {
             }}
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-full shadow-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 text-sm sm:text-base"
+            onClick={() => setQuoteDialogOpen(true)}
           >
-            Request a Consultation
+            Request a Quote
             <ChevronRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
           </motion.a>
         </motion.div>
       </div>
+      <QuoteForm open={quoteDialogOpen} onOpenChange={setQuoteDialogOpen} />
 
       {/* Add custom animation for the blob effect */}
       <style jsx>

@@ -621,10 +621,10 @@ export default function BlogDetailPage() {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
-        className="min-h-screen pb-20"
+        className="min-h-screen pb-8 md:pb-20"
       >
         {/* Hero Section */}
-        <section className="relative h-[50vh] md:h-[60vh] w-full overflow-hidden">
+        <section className="relative h-[40vh] sm:h-[50vh] md:h-[60vh] w-full overflow-hidden">
           {/* Background Image */}
           <div className="absolute inset-0">
             <Image
@@ -638,7 +638,7 @@ export default function BlogDetailPage() {
           </div>
 
           {/* Content */}
-          <div className="container mx-auto px-4 relative h-full flex flex-col justify-end pb-12">
+          <div className="container mx-auto px-4 sm:px-6 relative h-full flex flex-col justify-end pb-8 md:pb-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -646,30 +646,30 @@ export default function BlogDetailPage() {
             >
               <Link
                 href="/blog"
-                className="inline-flex items-center text-primary hover:underline mb-6"
+                className="inline-flex items-center text-primary hover:underline mb-4 md:mb-6"
               >
                 <ArrowLeft size={16} className="mr-2" />
                 Back to all articles
               </Link>
 
-              <h1 className="text-3xl md:text-5xl font-bold mb-4 max-w-4xl">
+              <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-3 md:mb-4 max-w-4xl">
                 {post.title}
               </h1>
 
-              <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-muted-foreground">
                 <div className="flex items-center">
-                  <User size={16} className="mr-1" />
+                  <User size={14} className="mr-1" />
                   <span>{post.author}</span>
                 </div>
                 <div className="flex items-center">
-                  <Calendar size={16} className="mr-1" />
+                  <Calendar size={14} className="mr-1" />
                   <span>{post.date}</span>
                 </div>
                 <div className="flex items-center">
-                  <Clock size={16} className="mr-1" />
+                  <Clock size={14} className="mr-1" />
                   <span>{post.readTime}</span>
                 </div>
-                <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">
+                <span className="px-2 sm:px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">
                   {post.category}
                 </span>
               </div>
@@ -678,25 +678,25 @@ export default function BlogDetailPage() {
         </section>
 
         {/* Article Content */}
-        <section className="container mx-auto px-4 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+        <section className="container mx-auto px-4 sm:px-6 py-8 md:py-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
             {/* Main Content */}
             <motion.div
-              className="md:col-span-8 lg:col-span-9"
+              className="lg:col-span-8 xl:col-span-9"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <article className="prose prose-lg max-w-none dark:prose-invert prose-headings:text-foreground prose-p:text-muted-foreground prose-a:text-primary">
+              <article className="prose prose-sm sm:prose-base md:prose-lg max-w-none dark:prose-invert prose-headings:text-foreground prose-p:text-muted-foreground prose-a:text-primary">
                 <div dangerouslySetInnerHTML={{ __html: post.content }} />
               </article>
 
               {/* Post Navigation */}
-              <div className="mt-12 pt-6 border-t flex justify-between">
+              <div className="mt-8 md:mt-12 pt-4 md:pt-6 border-t flex justify-between">
                 {prevId ? (
                   <button
                     onClick={() => navigateToBlog(prevId)}
-                    className="flex items-center text-primary hover:underline"
+                    className="flex items-center text-primary hover:underline text-sm md:text-base"
                   >
                     <ChevronLeft size={16} className="mr-1" />
                     Previous Article
@@ -708,7 +708,7 @@ export default function BlogDetailPage() {
                 {nextId ? (
                   <button
                     onClick={() => navigateToBlog(nextId)}
-                    className="flex items-center text-primary hover:underline"
+                    className="flex items-center text-primary hover:underline text-sm md:text-base"
                   >
                     Next Article
                     <ChevronRight size={16} className="ml-1" />
@@ -719,28 +719,31 @@ export default function BlogDetailPage() {
               </div>
 
               {/* Share */}
-              <div className="mt-8 pt-6 border-t">
-                <div className="flex items-center gap-4 relative">
-                  <span className="font-medium">Share this article:</span>
+              <div className="mt-6 md:mt-8 pt-4 md:pt-6 border-t">
+                <div className="flex items-center gap-3 md:gap-4 relative">
+                  <span className="font-medium text-sm md:text-base">
+                    Share this article:
+                  </span>
                   <div className="flex gap-2">
                     <button
-                      className="p-2 rounded-full bg-muted hover:bg-muted/80 transition-colors"
+                      className="p-1.5 md:p-2 rounded-full bg-muted hover:bg-muted/80 transition-colors"
                       onClick={() => setShowShareOptions(!showShareOptions)}
                     >
-                      <Share2 size={18} />
+                      <Share2 size={16} className="md:w-5 md:h-5" />
                     </button>
 
                     {showShareOptions && (
-                      <div className="absolute left-36 top-0 bg-card shadow-lg rounded-lg p-3 z-50 border border-border flex gap-2">
+                      <div className="absolute left-28 md:left-36 top-0 bg-card shadow-lg rounded-lg p-2 md:p-3 z-50 border border-border flex gap-2">
                         <button
                           onClick={() => handleShare("twitter")}
-                          className="p-2 rounded-full bg-[#1DA1F2] text-white hover:opacity-90 transition-opacity"
+                          className="p-1.5 md:p-2 rounded-full bg-[#1DA1F2] text-white hover:opacity-90 transition-opacity"
                           aria-label="Share on Twitter"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
+                            width="14"
+                            height="14"
+                            className="md:w-4 md:h-4"
                             fill="currentColor"
                             viewBox="0 0 16 16"
                           >
@@ -749,13 +752,14 @@ export default function BlogDetailPage() {
                         </button>
                         <button
                           onClick={() => handleShare("facebook")}
-                          className="p-2 rounded-full bg-[#4267B2] text-white hover:opacity-90 transition-opacity"
+                          className="p-1.5 md:p-2 rounded-full bg-[#4267B2] text-white hover:opacity-90 transition-opacity"
                           aria-label="Share on Facebook"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
+                            width="14"
+                            height="14"
+                            className="md:w-4 md:h-4"
                             fill="currentColor"
                             viewBox="0 0 16 16"
                           >
@@ -764,13 +768,14 @@ export default function BlogDetailPage() {
                         </button>
                         <button
                           onClick={() => handleShare("linkedin")}
-                          className="p-2 rounded-full bg-[#0077B5] text-white hover:opacity-90 transition-opacity"
+                          className="p-1.5 md:p-2 rounded-full bg-[#0077B5] text-white hover:opacity-90 transition-opacity"
                           aria-label="Share on LinkedIn"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
+                            width="14"
+                            height="14"
+                            className="md:w-4 md:h-4"
                             fill="currentColor"
                             viewBox="0 0 16 16"
                           >
@@ -779,13 +784,14 @@ export default function BlogDetailPage() {
                         </button>
                         <button
                           onClick={() => handleShare("copy")}
-                          className="p-2 rounded-full bg-gray-600 text-white hover:opacity-90 transition-opacity"
+                          className="p-1.5 md:p-2 rounded-full bg-gray-600 text-white hover:opacity-90 transition-opacity"
                           aria-label="Copy link"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
+                            width="14"
+                            height="14"
+                            className="md:w-4 md:h-4"
                             fill="currentColor"
                             viewBox="0 0 16 16"
                           >
@@ -798,7 +804,7 @@ export default function BlogDetailPage() {
                   </div>
 
                   {copySuccess && (
-                    <span className="text-sm text-green-600 ml-2">
+                    <span className="text-xs md:text-sm text-green-600 ml-2">
                       Link copied!
                     </span>
                   )}
@@ -808,44 +814,50 @@ export default function BlogDetailPage() {
 
             {/* Sidebar */}
             <motion.div
-              className="md:col-span-4 lg:col-span-3"
+              className="lg:col-span-4 xl:col-span-3"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <div className="sticky top-24 space-y-8">
+              <div className="sticky top-20 md:top-24 space-y-6 md:space-y-8">
                 {/* Author */}
-                <div className="p-6 bg-card rounded-xl border">
-                  <h3 className="text-lg font-medium mb-4">About the Author</h3>
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
-                      <User size={24} className="text-primary" />
+                <div className="p-4 md:p-6 bg-card rounded-xl border">
+                  <h3 className="text-base md:text-lg font-medium mb-3 md:mb-4">
+                    About the Author
+                  </h3>
+                  <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                      <User size={20} className="md:w-6 md:h-6 text-primary" />
                     </div>
                     <div>
-                      <h4 className="font-medium">{post.author}</h4>
-                      <p className="text-sm text-muted-foreground">
+                      <h4 className="font-medium text-sm md:text-base">
+                        {post.author}
+                      </h4>
+                      <p className="text-xs md:text-sm text-muted-foreground">
                         Content Writer
                       </p>
                     </div>
                   </div>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-xs md:text-sm text-muted-foreground">
                     Expert in laser technology with years of experience in the
                     industry.
                   </p>
                 </div>
 
                 {/* Related Posts */}
-                <div className="p-6 bg-card rounded-xl border">
-                  <h3 className="text-lg font-medium mb-4">Related Articles</h3>
+                <div className="p-4 md:p-6 bg-card rounded-xl border">
+                  <h3 className="text-base md:text-lg font-medium mb-3 md:mb-4">
+                    Related Articles
+                  </h3>
                   {relatedArticles.length > 0 ? (
-                    <div className="space-y-4">
+                    <div className="space-y-3 md:space-y-4">
                       {relatedArticles.map((relatedPost) => (
                         <Link
                           key={relatedPost.id}
                           href={`/blog/${relatedPost.id}`}
                           className="flex gap-3 group"
                         >
-                          <div className="relative w-16 h-16 rounded-md overflow-hidden flex-shrink-0">
+                          <div className="relative w-14 h-14 md:w-16 md:h-16 rounded-md overflow-hidden flex-shrink-0">
                             <Image
                               src={relatedPost.image || "/placeholder.svg"}
                               alt={relatedPost.title}
@@ -854,7 +866,7 @@ export default function BlogDetailPage() {
                             />
                           </div>
                           <div>
-                            <h4 className="text-sm font-medium group-hover:text-primary transition-colors line-clamp-2">
+                            <h4 className="text-xs md:text-sm font-medium group-hover:text-primary transition-colors line-clamp-2">
                               {relatedPost.title}
                             </h4>
                             <p className="text-xs text-muted-foreground mt-1">
@@ -865,15 +877,17 @@ export default function BlogDetailPage() {
                       ))}
                     </div>
                   ) : (
-                    <p className="text-sm text-muted-foreground italic">
+                    <p className="text-xs md:text-sm text-muted-foreground italic">
                       No related articles available in this category.
                     </p>
                   )}
                 </div>
 
                 {/* Categories */}
-                <div className="p-6 bg-card rounded-xl border">
-                  <h3 className="text-lg font-medium mb-4">Categories</h3>
+                <div className="p-4 md:p-6 bg-card rounded-xl border">
+                  <h3 className="text-base md:text-lg font-medium mb-3 md:mb-4">
+                    Categories
+                  </h3>
                   <div className="flex flex-wrap gap-2">
                     {[
                       "Company",
@@ -885,7 +899,7 @@ export default function BlogDetailPage() {
                       <Link
                         key={category}
                         href={`/blog?category=${category}`}
-                        className={`px-3 py-1 rounded-full text-sm ${
+                        className={`px-2 md:px-3 py-1 rounded-full text-xs md:text-sm ${
                           category === post.category
                             ? "bg-primary text-white"
                             : "bg-muted hover:bg-muted/80 text-foreground"
@@ -902,17 +916,17 @@ export default function BlogDetailPage() {
         </section>
 
         {/* More Articles */}
-        <section className="container mx-auto px-4 py-12">
+        <section className="container mx-auto px-4 sm:px-6 py-8 md:py-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
-            <h2 className="text-2xl md:text-3xl font-bold mb-8">
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-6 md:mb-8">
               More Articles
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {Object.values(blogPosts)
                 .filter((p) => p.id !== post.id)
                 .slice(0, 3)
@@ -922,7 +936,7 @@ export default function BlogDetailPage() {
                     href={`/blog/${relatedPost.id}`}
                     className="group"
                   >
-                    <div className="relative h-48 rounded-xl overflow-hidden mb-4">
+                    <div className="relative h-40 sm:h-48 rounded-xl overflow-hidden mb-3 md:mb-4">
                       <Image
                         src={relatedPost.image || "/placeholder.svg"}
                         alt={relatedPost.title}
@@ -931,10 +945,10 @@ export default function BlogDetailPage() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
-                    <h3 className="text-lg font-medium group-hover:text-primary transition-colors">
+                    <h3 className="text-base md:text-lg font-medium group-hover:text-primary transition-colors">
                       {relatedPost.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground mt-2">
+                    <p className="text-xs md:text-sm text-muted-foreground mt-1 md:mt-2">
                       {relatedPost.date} · {relatedPost.readTime}
                     </p>
                   </Link>

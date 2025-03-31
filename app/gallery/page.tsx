@@ -374,11 +374,11 @@ export default function GalleryPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-blue-50 pb-20 mt-10">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-blue-50 pb-8 sm:pb-12 md:pb-20 mt-4 sm:mt-6 md:mt-10">
       {/* Animated background elements */}
       <div className="fixed inset-0 -z-10 overflow-hidden">
         <motion.div
-          className="absolute top-20 left-10 w-64 h-64 rounded-full bg-blue-100 opacity-30 blur-3xl"
+          className="absolute top-10 sm:top-20 left-5 sm:left-10 w-40 sm:w-64 h-40 sm:h-64 rounded-full bg-blue-100 opacity-30 blur-3xl"
           animate={{
             x: [0, 30, 0],
             y: [0, 20, 0],
@@ -390,7 +390,7 @@ export default function GalleryPage() {
           }}
         />
         <motion.div
-          className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-cyan-100 opacity-30 blur-3xl"
+          className="absolute bottom-10 sm:bottom-20 right-5 sm:right-10 w-60 sm:w-80 h-60 sm:h-80 rounded-full bg-cyan-100 opacity-30 blur-3xl"
           animate={{
             x: [0, -40, 0],
             y: [0, -30, 0],
@@ -403,7 +403,7 @@ export default function GalleryPage() {
           }}
         />
         <motion.div
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-purple-100 opacity-20 blur-3xl"
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 sm:w-96 h-72 sm:h-96 rounded-full bg-purple-100 opacity-20 blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
           }}
@@ -418,13 +418,13 @@ export default function GalleryPage() {
 
       {/* Header section */}
       <motion.section
-        className="py-16 px-4 sm:px-6 lg:px-8 text-center"
+        className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8 text-center"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
         <motion.h1
-          className="text-4xl md:text-5xl font-bold text-slate-800 mb-4"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800 mb-3 sm:mb-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -432,7 +432,7 @@ export default function GalleryPage() {
           Our Gallery
         </motion.h1>
         <motion.p
-          className="text-lg text-slate-600 max-w-2xl mx-auto"
+          className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto px-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
@@ -443,14 +443,14 @@ export default function GalleryPage() {
       </motion.section>
 
       {/* Search bar */}
-      <div className="max-w-md mx-auto mb-8 px-4">
+      <div className="max-w-md mx-auto mb-6 sm:mb-8 px-4">
         <div className="relative">
           <Input
             type="text"
             placeholder="Search gallery..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pr-10"
+            className="pr-10 text-sm sm:text-base"
           />
           {searchTerm ? (
             <Button
@@ -470,7 +470,7 @@ export default function GalleryPage() {
 
       {/* Main gallery section */}
       <motion.section
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.4 }}
@@ -479,9 +479,9 @@ export default function GalleryPage() {
           <Tabs
             defaultValue={activeTab}
             onValueChange={setActiveTab}
-            className="w-full mb-8"
+            className="w-full mb-6 sm:mb-8"
           >
-            <TabsList className="grid w-full max-w-md mx-auto grid-cols-3">
+            <TabsList className="grid w-full max-w-md mx-auto grid-cols-3 text-sm sm:text-base">
               <TabsTrigger value="client">Happy Clients</TabsTrigger>
               <TabsTrigger value="machine">Machine Installation</TabsTrigger>
               <TabsTrigger value="award">Awards & Exhibition</TabsTrigger>
@@ -490,8 +490,8 @@ export default function GalleryPage() {
         )}
 
         {isSearching && (
-          <div className="text-center mb-8">
-            <h2 className="text-xl font-medium text-slate-700">
+          <div className="text-center mb-6 sm:mb-8">
+            <h2 className="text-lg sm:text-xl font-medium text-slate-700">
               {filteredImages.length === 0
                 ? "No results found"
                 : `Found ${filteredImages.length} results for "${searchTerm}"`}
@@ -500,7 +500,7 @@ export default function GalleryPage() {
         )}
 
         <motion.div
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6"
+          className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -521,15 +521,14 @@ export default function GalleryPage() {
                   <Image
                     src={image.src || "/placeholder.svg"}
                     alt={image.alt}
-                    // fill
                     height={500}
                     width={500}
-                    className="object-cover transition-transform h-50 w-50 duration-300 group-hover:scale-110"
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
                     unoptimized={image.src.startsWith("http")}
                   />
                 </div>
                 <motion.div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                  <p className="text-white p-3 text-sm font-medium">
+                  <p className="text-white p-2 sm:p-3 text-xs sm:text-sm font-medium">
                     {image.alt}
                   </p>
                 </motion.div>
@@ -540,8 +539,8 @@ export default function GalleryPage() {
 
         {/* Show message if no images found */}
         {getCurrentImages().length === 0 && !isSearching && (
-          <div className="text-center py-20">
-            <p className="text-slate-500">
+          <div className="text-center py-12 sm:py-16 md:py-20">
+            <p className="text-slate-500 text-sm sm:text-base">
               No images available in this category.
             </p>
           </div>

@@ -62,7 +62,7 @@ type FormValues = z.infer<typeof formSchema>;
 interface ScheduleDemoProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  productName: string;
+  productName?: string;
 }
 
 // Available time slots
@@ -112,7 +112,7 @@ export function ScheduleDemo({
       const sheetData = {
         ...data,
         date: format(data.date, "yyyy-MM-dd"),
-        product: productName,
+        product: productName || "General Inquiry",
         timestamp: new Date().toISOString(),
       };
 
@@ -127,7 +127,7 @@ export function ScheduleDemo({
       const emailResult = await sendConfirmationEmails({
         ...data,
         formattedDate,
-        product: productName,
+        product: productName || "",
         timestamp: new Date().toISOString(),
       });
 
